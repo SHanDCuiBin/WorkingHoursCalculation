@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.checkIsRemeber = new System.Windows.Forms.CheckBox();
             this.btn_Login = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -57,32 +57,32 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "密  码：";
             // 
-            // textBox1
+            // txtUserName
             // 
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textBox1.Location = new System.Drawing.Point(344, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 29);
-            this.textBox1.TabIndex = 2;
+            this.txtUserName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txtUserName.Location = new System.Drawing.Point(344, 91);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(197, 29);
+            this.txtUserName.TabIndex = 2;
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textBox2.Location = new System.Drawing.Point(344, 141);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(197, 29);
-            this.textBox2.TabIndex = 3;
+            this.txtPassword.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txtPassword.Location = new System.Drawing.Point(344, 141);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(197, 29);
+            this.txtPassword.TabIndex = 3;
             // 
-            // checkBox1
+            // checkIsRemeber
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(457, 182);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(84, 24);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "记住密码";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkIsRemeber.AutoSize = true;
+            this.checkIsRemeber.Location = new System.Drawing.Point(457, 182);
+            this.checkIsRemeber.Name = "checkIsRemeber";
+            this.checkIsRemeber.Size = new System.Drawing.Size(84, 24);
+            this.checkIsRemeber.TabIndex = 4;
+            this.checkIsRemeber.Text = "记住密码";
+            this.checkIsRemeber.UseVisualStyleBackColor = true;
             // 
             // btn_Login
             // 
@@ -94,6 +94,8 @@
             this.btn_Login.Text = "登  陆";
             this.btn_Login.UseVisualStyleBackColor = true;
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            this.btn_Login.MouseEnter += new System.EventHandler(this.BtnSDSRSave_MouseEnter);
+            this.btn_Login.MouseLeave += new System.EventHandler(this.BtnSDSRSave_MouseLeave);
             // 
             // btn_Cancel
             // 
@@ -105,6 +107,8 @@
             this.btn_Cancel.Text = "取  消";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            this.btn_Cancel.MouseEnter += new System.EventHandler(this.BtnSDSRSave_MouseEnter);
+            this.btn_Cancel.MouseLeave += new System.EventHandler(this.BtnSDSRSave_MouseLeave);
             // 
             // LoginForm
             // 
@@ -114,9 +118,9 @@
             this.ClientSize = new System.Drawing.Size(583, 315);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Login);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.checkIsRemeber);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -137,9 +141,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.CheckBox checkIsRemeber;
         private System.Windows.Forms.Button btn_Login;
         private System.Windows.Forms.Button btn_Cancel;
     }

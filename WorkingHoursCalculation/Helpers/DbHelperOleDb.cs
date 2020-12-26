@@ -18,7 +18,6 @@ namespace WorkingHoursCalculation.Helpers
     public abstract class DbHelperOleDb
     {
         //数据库连接字符串(App.config来配置)    
-        //public static string connectionString = ConfigurationManager.AppSettings["ConnStr"].ToString();
         public static string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + Application.StartupPath + "\\Data\\Data.accdb" + "';Jet OLEDB:Database Password=123456;";
         public DbHelperOleDb()
         {
@@ -52,7 +51,7 @@ namespace WorkingHoursCalculation.Helpers
         /// </summary>
         /// <param name="SQLString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        public  static int ExecuteSql(string SQLString, Dictionary<string, object> dic)
+        public static int ExecuteSql(string SQLString, Dictionary<string, object> dic)
         {
 
             using (OleDbConnection connection = new OleDbConnection(connectionString))
@@ -378,6 +377,6 @@ namespace WorkingHoursCalculation.Helpers
             return updstr;
         }
 
-        
+
     }
 }
