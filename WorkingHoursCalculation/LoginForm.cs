@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkingHoursCalculation.Helpers;
 
 namespace WorkingHoursCalculation
 {
@@ -44,7 +45,7 @@ namespace WorkingHoursCalculation
         /// <param name="e"></param>
         private void btn_Login_Click(object sender, EventArgs e)
         {
-
+            DataTable dt = DbHelperOleDb.Query().Tables[0];
         }
 
         /// <summary>
