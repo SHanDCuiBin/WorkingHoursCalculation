@@ -31,7 +31,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>计算.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastReport">
+      <HintPath>Lib\FastReport.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -57,6 +81,12 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Frm_PersonelInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_PersonelInfo.Designer.cs">
+      <DependentUpon>Frm_PersonelInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,7 +104,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Frm_PersonelInfo.resx">
+      <DependentUpon>Frm_PersonelInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,11 +123,46 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Data.accdb">
+    <Content Include="Data\Data.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\宠物.png\爱宠01.png" />
+    <Content Include="Resources\宠物.png\爱宠02.png" />
+    <Content Include="Resources\宠物.png\爱宠03.png" />
+    <Content Include="Resources\宠物.png\爱宠04.png" />
+    <Content Include="Resources\宠物.png\爱宠05.png" />
+    <Content Include="Resources\宠物.png\爱宠06.png" />
+    <Content Include="Resources\宠物.png\爱宠07.png" />
+    <Content Include="Resources\宠物.png\爱宠08.png" />
+    <Content Include="Resources\宠物.png\爱宠09.png" />
+    <Content Include="Resources\宠物.png\爱宠10.png" />
+    <Content Include="Resources\宠物.png\爱宠11.png" />
+    <Content Include="Resources\宠物.png\爱宠12.png" />
+    <Content Include="Resources\宠物.png\爱宠13.png" />
+    <Content Include="Resources\宠物.png\爱宠14.png" />
+    <Content Include="Resources\宠物.png\爱宠15.png" />
+    <Content Include="Resources\宠物.png\爱宠16.png" />
+    <Content Include="Resources\宠物.png\爱宠17.png" />
+    <Content Include="Resources\宠物.png\爱宠18.png" />
+    <Content Include="Resources\宠物.png\爱宠19.png" />
+    <Content Include="Resources\宠物.png\爱宠20.png" />
+    <Content Include="Resources\宠物.png\爱宠21.png" />
+    <Content Include="Resources\宠物.png\爱宠22.png" />
+    <Content Include="Resources\宠物.png\爱宠23.png" />
+    <Content Include="Resources\宠物.png\爱宠24.png" />
+    <Content Include="Resources\宠物.png\爱宠25.png" />
+    <Content Include="Resources\宠物.png\爱宠26.png" />
+    <Content Include="Resources\宠物.png\爱宠27.png" />
+    <Content Include="Resources\宠物.png\爱宠28.png" />
+    <Content Include="Resources\宠物.png\爱宠29.png" />
+    <Content Include="Resources\宠物.png\爱宠30.png" />
+    <Content Include="Resources\宠物.png\爱宠31.png" />
+    <Content Include="Resources\宠物.png\爱宠32.png" />
+    <Content Include="Resources\计算.ico" />
+    <Content Include="Resources\计算.png" />
+    <Content Include="计算.ico" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

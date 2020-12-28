@@ -18,8 +18,14 @@ namespace WorkingHoursCalculation
         {
             InitializeComponent();
 
+            Random random = new Random();
+            int index = random.Next(0, 32);
+            SetPicture(index, this.pictureBox1);
+
             //初始化账号信息
             InitializationAccount();
+
+
         }
 
         #region 系统初始化
@@ -28,12 +34,12 @@ namespace WorkingHoursCalculation
         /// </summary>
         private void InitializationAccount()
         {
-            string isrember = ConfigOperator.GetValueFromConfig("isremeber");
+            string isrember = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("isremeber"));
             if (isrember.Contains("true"))
             {
 
-                string Account = ConfigOperator.GetValueFromConfig("Account");
-                string password = ConfigOperator.GetValueFromConfig("password");
+                string Account = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("Account"));
+                string password = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("password"));
                 if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(password))
                 {
                     checkIsRemeber.Checked = true;
@@ -63,15 +69,18 @@ namespace WorkingHoursCalculation
                         Dictionary<string, object> dic = new Dictionary<string, object>();
                         dic.Add("@username", DESJiaMi.Encrypt(txtUserName.Text));
                         dic.Add("@password", DESJiaMi.Encrypt(txtPassword.Text));
-                        string sql = "Select * from Users where enable=1 and  username=@username and password =@password ";
-                        
+
+                        //dic.Add("@username", txtUserName.Text);
+                        //dic.Add("@password", txtPassword.Text);
+                        string sql = "Select * from Users where enable='1' and  username=@username and password =@password ";
+
                         DataTable userdt = DbHelperOleDb.Query(sql, dic).Tables[0];
                         if (userdt != null && userdt.Rows.Count > 0)
                         {
                             //登陆账号
-                            UserInfo.userName = userdt.Rows[0]["login_name"].ToString();
+                            UserInfo.userName = DESJiaMi.Decrypt(userdt.Rows[0]["username"].ToString());
                             //登陆密码
-                            UserInfo.password = userdt.Rows[0]["password"].ToString();
+                            UserInfo.password = DESJiaMi.Decrypt(userdt.Rows[0]["password"].ToString());
                             this.Hide();
 
                             //记住账号密码信息
@@ -174,5 +183,48 @@ namespace WorkingHoursCalculation
             }
         }
         #endregion
+
+
+        private void SetPicture(int index, PictureBox pictureBox)
+        {
+
+            switch (index)
+            {
+                case 1: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠01; break;
+                case 2: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠02; break;
+                case 3: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠03; break;
+                case 4: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠04; break;
+                case 5: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠05; break;
+                case 6: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠06; break;
+                case 7: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠07; break;
+                case 8: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠08; break;
+                case 9: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠09; break;
+                case 10: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠10; break;
+                case 11: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠11; break;
+                case 12: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠12; break;
+                case 13: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠13; break;
+                case 14: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠14; break;
+                case 15: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠15; break;
+                case 16: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠16; break;
+                case 17: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠17; break;
+                case 18: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠18; break;
+                case 19: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠19; break;
+                case 20: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠20; break;
+                case 21: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠21; break;
+                case 22: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠22; break;
+                case 23: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠23; break;
+                case 24: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠24; break;
+                case 25: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠25; break;
+                case 26: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠26; break;
+                case 27: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠27; break;
+                case 28: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠28; break;
+                case 29: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠29; break;
+                case 30: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠30; break;
+                case 31: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠31; break;
+                case 32: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠32; break;
+                default:
+                    break;
+            }
+        }
     }
 }

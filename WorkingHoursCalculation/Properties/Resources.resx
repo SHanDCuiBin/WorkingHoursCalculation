@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,112 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="爱宠01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠27.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠29.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="爱宠32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\宠物.png\爱宠32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="计算" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\计算.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="计算1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\计算.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -18,7 +18,7 @@ namespace WorkingHoursCalculation.Helpers
     public abstract class DbHelperOleDb
     {
         //数据库连接字符串(App.config来配置)    
-        public static string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + Application.StartupPath + "\\Data\\Data.accdb" + "';Jet OLEDB:Database Password=123456;";
+        public static string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + Application.StartupPath + "\\Data\\Data.mdb" + "';Jet OLEDB:Database Password=123456;";
         public DbHelperOleDb()
         {
         }
