@@ -16,12 +16,21 @@ namespace WorkingHoursCalculation.Views
         /// 用户数据集
         /// </summary>
         DataTable userdt = new DataTable();
+
+        /// <summary>
+        /// 当前选中的记录的索引
+        /// </summary>
+        private string CurrentSelectNumber = string.Empty;
         public Frm_PersonelInfo()
         {
             InitializeComponent();
 
+            //不显示未绑定数值的列
+            this.datagridview.AutoGenerateColumns = false;
+
             //加载员工列表
             LoadPersonelInfo();
+
         }
 
         /// <summary>
@@ -48,6 +57,7 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
+            CurrentSelectNumber = string.Empty;
             try
             {
                 if (this.datagridview.CurrentRow != null)
@@ -56,14 +66,21 @@ namespace WorkingHoursCalculation.Views
                     string name = this.datagridview.CurrentRow.Cells["name"].Value.ToString();
                     if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(name))
                     {
+                        CurrentSelectNumber = this.datagridview.CurrentRow.Cells["ID"].Value.ToString();
                         DataRow[] dr = userdt.Select();
                         if (dr != null && dr.Length > 0)
                         {
-                            txtName.Text = DESJiaMi.Encrypt(dr[0]["name"].ToString());
-                            cboxGender.Text = DESJiaMi.Encrypt(dr[0]["gender"].ToString());
-                            txtLxdh.Text = DESJiaMi.Encrypt(dr[0]["lxdh"].ToString());
-                            richMainjob.Text = DESJiaMi.Encrypt(dr[0]["mainwork"].ToString());
-                            labCreateTime.Text = DESJiaMi.Encrypt(dr[0]["createtime"].ToString());
+                            txtName.Text = DESJiaMi.Decrypt(dr[0]["name"].ToString());
+                            cboxGender.Text = DESJiaMi.Decrypt(dr[0]["gender"].ToString());
+                            txtLxdh.Text = DESJiaMi.Decrypt(dr[0]["lxdh"].ToString());
+                            richMainjob.Text = dr[0]["mainwork"].ToString();
+                            labCreateTime.Text = dr[0]["createtime"].ToString();
+
+                            //信息可编状态
+                            IsAddNeiRong(false);
+
+                            //重置按钮的初始状态
+                            ResetBtnStrute();
                         }
                         else
                         {
@@ -93,7 +110,47 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Update_Click(object sender, EventArgs e)
         {
+            if (btn_Update.Text == "保 存")                                                                   //保存功能
+            {
+                if (!string.IsNullOrEmpty(txtName.Text.Trim()))
+                {
+                    //判断姓名是否重复
+                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "';";
+                    DataTable userUpdate = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
+                    if (userUpdate != null && userUpdate.Rows.Count > 0)
+                    {
+                        MessageBox.Show("该姓名信息已经存在，不能重复添加！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
 
+
+                        btn_Update.Text = "修 改";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请先输入有效的“姓名”信息！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(CurrentSelectNumber))        //修改功能
+                {
+                    //信息可编状态
+                    IsAddNeiRong(true);
+
+                    btn_Update.Text = "保 存";
+
+                    //设置按钮状态
+                    SetButtonStatus(true, false, false);
+                }
+                else
+                {
+                    MessageBox.Show("未选择有效的员工信息数据，无法进行修改。\r\n请先双击左侧待修改的员工列表中需要修改的记录", "修改", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         /// <summary>
@@ -103,7 +160,30 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Delete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(CurrentSelectNumber))
+                {
+                    string sql = "update Personnel set enable = '2' where id =" + CurrentSelectNumber + ";";
+                    int result = DbHelperOleDb.ExecuteSql(sql, new Dictionary<string, object>());
+                    if (result > 0)
+                    {
+                        //重新加载员工列表
+                        LoadPersonelInfo();
 
+                        //清空左侧显示内容
+                        ClearnNeiRong();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("未选择有效的员工信息数据，无法进行删除。\r\n请先双击左侧待修改的员工列表中需要删除的记录", "删除", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("删除操作失败！！！", "删除", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -160,11 +240,43 @@ namespace WorkingHoursCalculation.Views
         }
 
         /// <summary>
+        /// 重置按钮的状态 显示状态和可用状态
+        /// </summary>
+        private void ResetBtnStrute()
+        {
+            btn_Update.Text = "修 改";
+            btn_Add.Text = "新 增";
+            btn_Delete.Text = "删 除";
+
+            //设置按钮状态
+            SetButtonStatus(true, true, true);
+        }
+
+        /// <summary>
         /// 可编辑状态
         /// </summary>
         private void IsAddNeiRong(bool isStatus)
         {
             txtName.Enabled = cboxGender.Enabled = txtLxdh.Enabled = richMainjob.Enabled = isStatus;
+        }
+
+        /// <summary>
+        /// 列内容转义
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void datagridview_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex != -1 && e.Value != null)
+            {
+                //获取列名
+                string columnName = datagridview.Columns[e.ColumnIndex].Name;
+
+                if ((columnName == "name") && e.Value.ToString() != "")
+                {
+                    e.Value = DESJiaMi.Decrypt(e.Value.ToString());
+                }
+            }
         }
     }
 }

@@ -29,28 +29,30 @@ namespace WorkingHoursCalculation.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labCreateTime = new System.Windows.Forms.Label();
+            this.richMainjob = new System.Windows.Forms.RichTextBox();
+            this.cboxGender = new System.Windows.Forms.ComboBox();
+            this.txtLxdh = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btn_Update = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Add = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtLxdh = new System.Windows.Forms.TextBox();
-            this.cboxGender = new System.Windows.Forms.ComboBox();
-            this.richMainjob = new System.Windows.Forms.RichTextBox();
-            this.labCreateTime = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -74,14 +76,14 @@ namespace WorkingHoursCalculation.Views
             this.datagridview.AllowUserToResizeRows = false;
             this.datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 11F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -91,9 +93,23 @@ namespace WorkingHoursCalculation.Views
             this.datagridview.Name = "datagridview";
             this.datagridview.RowHeadersVisible = false;
             this.datagridview.RowTemplate.Height = 23;
+            this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datagridview.Size = new System.Drawing.Size(271, 464);
             this.datagridview.TabIndex = 0;
+            this.datagridview.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.datagridview_CellFormatting);
             this.datagridview.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "序号";
+            this.ID.Name = "ID";
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "姓名";
+            this.name.Name = "name";
             // 
             // groupBox2
             // 
@@ -117,97 +133,22 @@ namespace WorkingHoursCalculation.Views
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "详细信息";
             // 
-            // btn_Update
+            // labCreateTime
             // 
-            this.btn_Update.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Update.Location = new System.Drawing.Point(314, 448);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(75, 32);
-            this.btn_Update.TabIndex = 2;
-            this.btn_Update.Text = "修 改";
-            this.btn_Update.UseVisualStyleBackColor = true;
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
+            this.labCreateTime.AutoSize = true;
+            this.labCreateTime.Location = new System.Drawing.Point(115, 345);
+            this.labCreateTime.Name = "labCreateTime";
+            this.labCreateTime.Size = new System.Drawing.Size(159, 20);
+            this.labCreateTime.TabIndex = 11;
+            this.labCreateTime.Text = "2020-12-28 00:00:00";
             // 
-            // btn_Delete
+            // richMainjob
             // 
-            this.btn_Delete.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Delete.Location = new System.Drawing.Point(414, 448);
-            this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(75, 32);
-            this.btn_Delete.TabIndex = 3;
-            this.btn_Delete.Text = "删 除";
-            this.btn_Delete.UseVisualStyleBackColor = true;
-            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
-            // btn_Add
-            // 
-            this.btn_Add.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Add.Location = new System.Drawing.Point(512, 448);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(75, 32);
-            this.btn_Add.TabIndex = 4;
-            this.btn_Add.Text = "新 增";
-            this.btn_Add.UseVisualStyleBackColor = true;
-            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "姓名：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "性别：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 160);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "联系电话：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 208);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "主要工作：";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 345);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "创建时间：";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(115, 61);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(180, 27);
-            this.txtName.TabIndex = 5;
-            // 
-            // txtLxdh
-            // 
-            this.txtLxdh.Location = new System.Drawing.Point(115, 160);
-            this.txtLxdh.Name = "txtLxdh";
-            this.txtLxdh.Size = new System.Drawing.Size(180, 27);
-            this.txtLxdh.TabIndex = 7;
+            this.richMainjob.Location = new System.Drawing.Point(115, 209);
+            this.richMainjob.Name = "richMainjob";
+            this.richMainjob.Size = new System.Drawing.Size(180, 115);
+            this.richMainjob.TabIndex = 10;
+            this.richMainjob.Text = "";
             // 
             // cboxGender
             // 
@@ -220,44 +161,121 @@ namespace WorkingHoursCalculation.Views
             this.cboxGender.Size = new System.Drawing.Size(180, 28);
             this.cboxGender.TabIndex = 9;
             // 
-            // richMainjob
+            // txtLxdh
             // 
-            this.richMainjob.Location = new System.Drawing.Point(115, 209);
-            this.richMainjob.Name = "richMainjob";
-            this.richMainjob.Size = new System.Drawing.Size(180, 115);
-            this.richMainjob.TabIndex = 10;
-            this.richMainjob.Text = "";
+            this.txtLxdh.Location = new System.Drawing.Point(115, 160);
+            this.txtLxdh.Name = "txtLxdh";
+            this.txtLxdh.Size = new System.Drawing.Size(180, 27);
+            this.txtLxdh.TabIndex = 7;
             // 
-            // labCreateTime
+            // txtName
             // 
-            this.labCreateTime.AutoSize = true;
-            this.labCreateTime.Location = new System.Drawing.Point(115, 345);
-            this.labCreateTime.Name = "labCreateTime";
-            this.labCreateTime.Size = new System.Drawing.Size(159, 20);
-            this.labCreateTime.TabIndex = 11;
-            this.labCreateTime.Text = "2020-12-28 00:00:00";
+            this.txtName.Location = new System.Drawing.Point(115, 61);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(180, 27);
+            this.txtName.TabIndex = 5;
             // 
-            // ID
+            // label5
             // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "序号";
-            this.ID.Name = "ID";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 345);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "创建时间：";
             // 
-            // name
+            // label4
             // 
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "姓名";
-            this.name.Name = "name";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 208);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "主要工作：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 160);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "联系电话：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(55, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "性别：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "姓名：";
+            // 
+            // btn_Update
+            // 
+            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Update.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.btn_Update.Location = new System.Drawing.Point(5, 5);
+            this.btn_Update.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_Update.Name = "btn_Update";
+            this.btn_Update.Size = new System.Drawing.Size(75, 32);
+            this.btn_Update.TabIndex = 2;
+            this.btn_Update.Text = "修 改";
+            this.btn_Update.UseVisualStyleBackColor = true;
+            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
+            // 
+            // btn_Delete
+            // 
+            this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Delete.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.btn_Delete.Location = new System.Drawing.Point(90, 5);
+            this.btn_Delete.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(75, 32);
+            this.btn_Delete.TabIndex = 3;
+            this.btn_Delete.Text = "删 除";
+            this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            // 
+            // btn_Add
+            // 
+            this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Add.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.btn_Add.Location = new System.Drawing.Point(175, 5);
+            this.btn_Add.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(75, 32);
+            this.btn_Add.TabIndex = 4;
+            this.btn_Add.Text = "新 增";
+            this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btn_Update);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Delete);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Add);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(354, 444);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(266, 42);
+            this.flowLayoutPanel1.TabIndex = 5;
             // 
             // Frm_PersonelInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(632, 498);
-            this.Controls.Add(this.btn_Add);
-            this.Controls.Add(this.btn_Delete);
-            this.Controls.Add(this.btn_Update);
+            this.ClientSize = new System.Drawing.Size(626, 498);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -271,6 +289,7 @@ namespace WorkingHoursCalculation.Views
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,5 +314,6 @@ namespace WorkingHoursCalculation.Views
         private System.Windows.Forms.TextBox txtLxdh;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
