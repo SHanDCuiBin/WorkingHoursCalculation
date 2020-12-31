@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkingHoursCalculation.Models;
 
 namespace WorkingHoursCalculation.Helpers
 {
@@ -304,19 +305,13 @@ namespace WorkingHoursCalculation.Helpers
         /// <returns>生成的SQL语句</returns>
         public static String sqlString(DataRow dr, String tableName, int flag, String where)
         {
-
             string updstr = "";
-            //update
             if (flag == 0)
             {
                 for (int j = 0; j < dr.Table.Columns.Count; j++)
                 {
-                    //if (!dr.Table.Columns[j].ColumnName.Contains("zl_"))
-                    //{
-
                     if (dr.Table.Columns[j].ColumnName != "id" && dr.Table.Columns[j].ColumnName != "user_id" && dr.Table.Columns[j].ColumnName != "dah")
                     {
-
                         if (dr[j].ToString().Trim() != "" && dr[j].ToString().Trim() != "0001-00-00 00:00:00:000")
                         {
                             if (dr.Table.Columns[j].DataType.ToString() == "System.String" || dr.Table.Columns[j].DataType.ToString() == "System.DateTime")
@@ -328,32 +323,23 @@ namespace WorkingHoursCalculation.Helpers
                             {
                                 updstr += "[" + dr.Table.Columns[j].ColumnName + "]=" + dr[j].ToString().Trim() + ",";
                             }
-
                         }
                     }
-
-                    //}
                 }
-
                 if (updstr != "" && where != null && where != "")
                 {
                     updstr = "update " + tableName + " set " + updstr.Remove(updstr.Length - 1) + " where  1=1 " + where;
                 }
-
             }
-
             //Insert            
             if (flag == 1)
             {
                 String columnName = "";
                 String result = "";
-
                 for (int j = 0; j < dr.Table.Columns.Count; j++)
                 {
                     if (dr[j].ToString().Trim() != "")
                     {
-
-
                         if (dr.Table.Columns[j].DataType.ToString() == "System.String" || dr.Table.Columns[j].DataType.ToString() == "System.DateTime")
                         {
                             columnName += "[" + dr.Table.Columns[j].ColumnName + "],";
@@ -364,19 +350,226 @@ namespace WorkingHoursCalculation.Helpers
                             columnName += "[" + dr.Table.Columns[j].ColumnName + "],";
                             result += dr[j].ToString().Trim() + ",";
                         }
-
                     }
                 }
-
                 if (columnName != "")
                 {
                     updstr = "insert into " + tableName + "( " + columnName.Substring(0, columnName.Length - 1) + ") values( " + result.Substring(0, result.Length - 1) + ")";
                 }
             }
-
             return updstr;
         }
 
+        #region 实体 生成 "新增"、"插入" sql语句
 
+        /// <summary>
+        /// 实体插入
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="LMUpd">转换关系</param>
+        /// <returns></returns>
+        public static bool Add(object model, string TableName, OldNameToNewName LMUpd)
+        {
+            Dictionary<string, object> Dic = sqlAddString(model, TableName, LMUpd);
+            String strSql = Dic["Sql"].ToString();//生成SQL语句
+            Dictionary<string, object> parameters = Dic["Param"] as Dictionary<string, object>;//SQL参数
+            int rows = ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 实体更新
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="Param">条件参数</param>
+        /// <param name="LMUpd">转换关系</param>
+        /// <param name="gz">是否强制更新 true 强制更新；false 不强制更新 </param>
+        /// <returns></returns>
+        public static bool Update(object model, string tableName, List<termList> Param, OldNameToNewName LMUpd, bool gz)
+        {
+            bool czresult = false;
+            Dictionary<string, object> Dic = sqlUpdString(model, tableName, Param, LMUpd, gz);
+
+            String strSql = Dic["Sql"].ToString();//生成SQL语句
+            Dictionary<string, object> parameters = Dic["Param"] as Dictionary<string, object>;//SQL参数
+            int rows = ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                czresult = true;
+            }
+            else
+            {
+                czresult = false;
+            }
+
+            return czresult;
+
+        }
+
+
+
+        public delegate string OldNameToNewName(string OldName);
+        /// <summary>
+        /// 获取insert  Sql语句
+        /// </summary>
+        /// <param name="dr">数据行</param>
+        /// <param name="tableName">表明</param>
+        /// <returns></returns>
+        public static Dictionary<string, object> sqlAddString(object model, string tableName, OldNameToNewName LMUpd)//, OldNameToNewName LMUpd
+        {
+            Dictionary<string, object> Dic = new Dictionary<string, object>();
+            string updstr = "";
+            Type type = model.GetType();
+            String columnName = "";
+            String columnCSName = "";
+            //String result = "";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            int Num = 0;
+            foreach (System.Reflection.PropertyInfo item in type.GetProperties())
+            {
+                if (item.Name != null && item.Name != "")
+                {
+                    if (item.GetValue(model, null) != null && item.GetValue(model, null).ToString().Trim() != "")
+                    {
+                        if (type.GetProperty(item.Name) != null)
+                        {
+                            string filename = item.Name;
+                            if (LMUpd == null)
+                            {
+                                filename = item.Name;
+                            }
+                            else
+                            {
+                                filename = LMUpd(item.Name);
+                            }
+                            if (item.GetValue(model, null) != null)
+                            {
+                                columnName += "`" + filename + "`,";
+                                columnCSName += "@" + filename + ",";
+                                parameters.Add("@" + filename, item.GetValue(model, null));
+                                Num++;
+                            }
+                        }
+                    }
+                }
+            }
+            if (columnName != "")
+            {
+                updstr = "insert into " + tableName + "( " + columnName.Substring(0, columnName.Length - 1) + ") values( " + columnCSName.Substring(0, columnCSName.Length - 1) + ")";
+            }
+            Dic.Add("Sql", updstr);
+            Dic.Add("Param", parameters);
+            return Dic;
+        }
+
+        /// <summary>
+        /// 生成更新sql语句
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="Param">条件参数</param>
+        /// <param name="LMUpd">转换关系</param>
+        /// <param name="gz">是否强制更新 true 强制更新；false 不强制更新</param>
+        /// <returns></returns>
+        public static Dictionary<string, object> sqlUpdString(object model, string tableName, List<termList> Param, OldNameToNewName LMUpd, bool gz)
+        {
+            Dictionary<string, object> Dic = new Dictionary<string, object>();
+            string updstr = "";
+            Type type = model.GetType();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+            foreach (System.Reflection.PropertyInfo item in type.GetProperties())
+            {
+                if (item.Name != null && item.Name != "")
+                {
+                    if (!gz)
+                    {
+                        //如果不强制更新   则model中出现  null 或 出现空字符的 不进行操作
+                        if (item.GetValue(model, null) == null)//|| item.GetValue(model, null).ToString() == ""
+                        {
+                            continue;
+                        }
+                    }
+                    if (type.GetProperty(item.Name) != null)
+                    {
+                        string filename = item.Name;
+                        if (filename.Trim() == "")
+                        {
+                            continue;
+                        }
+                        if (item.GetValue(model, null) == null)
+                        {
+                            continue;
+                        }
+                    }
+                    if (item.GetValue(model, null) != null && item.GetValue(model, null).ToString().Trim() != "")
+                    {
+                        if (type.GetProperty(item.Name) != null)
+                        {
+                            string filename = item.Name;
+                            if (item.GetValue(model, null) != null)
+                            {
+                                updstr += "`" + filename + "`=@" + filename + ",";
+                                parameters.Add("@" + filename, item.GetValue(model, null));
+                            }
+                        }
+                    }
+                }
+            }
+            string whereStr = " Where ";
+            foreach (termList item in Param)
+            {
+                switch (item.K)
+                {
+                    case 0:
+                        whereStr += item.FieldName + "=@" + item.ParamName + " and "; break;
+                    case 1:
+                        whereStr += item.FieldName + ">=@" + item.ParamName + " and "; break;
+                    case 2:
+                        whereStr += item.FieldName + "<=@" + item.ParamName + " and "; break;
+                    case 3:
+                        whereStr += item.FieldName + " like @" + item.ParamName + " and "; break;
+                    case 4:
+                        whereStr += item.FieldName + "<>@" + item.ParamName + " and "; break;
+                    case 5:
+                        string[] inparm = item.FieldResult.Split(',');
+                        whereStr += item.FieldName + " in(";
+                        for (int i = 0; i < inparm.Length; i++)
+                        {
+                            whereStr += "@" + item.ParamName + i + ",";
+                            parameters.Add("@" + item.ParamName + i, inparm[i]);
+                        }
+                        whereStr = whereStr.Remove(whereStr.Length - 1);
+                        whereStr += ") and ";
+                        continue;
+                    case 6:
+                        whereStr += item.FieldName + " is not null and "; break;
+                    case 7:
+                        whereStr += item.FieldName + " is null and "; break;
+                    default:
+                        break;
+                }
+                parameters.Add("@" + item.ParamName, item.FieldResult);
+            }
+            whereStr += " 1=1";
+            if (updstr != "")
+            {
+                updstr = "update " + tableName + " set " + updstr.Remove(updstr.Length - 1) + whereStr;
+            }
+            Dic.Add("Sql", updstr);
+            Dic.Add("Param", parameters);
+
+            return Dic;
+        }
+        #endregion
     }
 }

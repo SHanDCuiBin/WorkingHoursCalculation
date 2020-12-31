@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkingHoursCalculation.Helpers;
 
 namespace WorkingHoursCalculation.Views
 {
@@ -14,6 +15,40 @@ namespace WorkingHoursCalculation.Views
         public MainForm()
         {
             InitializeComponent();
+
+            //初始化人员数据
+            Initialize();
+        }
+
+        /// <summary>
+        /// 初始化数据集合
+        /// </summary>
+        private void Initialize()
+        {
+            try
+            {
+                string sql = "Select ID,name from Personnel where enable='1' order by ID;";
+                DataTable userdt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
+                if (userdt != null && userdt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < userdt.Rows.Count; i++)
+                    {
+                        userdt.Rows[i]["name"] = DESJiaMi.Decrypt(userdt.Rows[i]["name"].ToString());
+                    }
+                    cboxUsers.DataSource = userdt;
+                    cboxUsers.DisplayMember = "name";
+                    cboxUsers.ValueMember = "ID";
+                    cboxUsers.SelectedIndex = -1;
+                }
+                else
+                {
+                    cboxUsers.DataSource = null;
+                }
+            }
+            catch (Exception ee)
+            {
+                cboxUsers.DataSource = null;
+            }
         }
 
         /// <summary>

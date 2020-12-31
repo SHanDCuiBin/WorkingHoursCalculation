@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WorkingHoursCalculation.Helpers;
+using WorkingHoursCalculation.Models;
 
 namespace WorkingHoursCalculation.Views
 {
@@ -115,18 +116,39 @@ namespace WorkingHoursCalculation.Views
                 if (!string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
                     //判断姓名是否重复
-                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "';";
+                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "' and id<>" + CurrentSelectNumber + ";";
                     DataTable userUpdate = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
                     if (userUpdate != null && userUpdate.Rows.Count > 0)
                     {
-                        MessageBox.Show("该姓名信息已经存在，不能重复添加！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("该姓名信息已经存在，不能重新添加该姓名的员工信息！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                     else
                     {
-
-
-                        btn_Update.Text = "修 改";
+                        //执行更新
+                        Personnel personnel = new Personnel();
+                        personnel.name = DESJiaMi.Encrypt(txtName.Text.Trim());
+                        personnel.gender = cboxGender.Text != "" ? DESJiaMi.Encrypt(cboxGender.Text.Trim()) : "";
+                        personnel.lxdh = txtLxdh.Text != "" ? DESJiaMi.Encrypt(txtLxdh.Text.Trim()) : "";
+                        personnel.mainwork = richMainjob.Text;
+                        personnel.createtime = labCreateTime.Text;
+                        personnel.createusername = UserInfo.userName;
+                        personnel.enable = "1";
+                        List<termList> termes = new List<termList>();
+                        termes.Add(new termList("id", "id1", CurrentSelectNumber, 0));
+                        if (DbHelperOleDb.Update(personnel, "Personnel", termes, null, true))
+                        {
+                            MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //ClearnNeiRong();                        //清空内容
+                            IsAddNeiRong(false);
+                            SetButtonStatus(true, true, true);      //重置按钮状态
+                            LoadPersonelInfo();                     //重新加载职工列表
+                            btn_Update.Text = "修 改";
+                        }
+                        else
+                        {
+                            MessageBox.Show("保存失败！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 else
@@ -164,6 +186,11 @@ namespace WorkingHoursCalculation.Views
             {
                 if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(CurrentSelectNumber))
                 {
+                    if (MessageBox.Show("【注意】：\r\n删除该员工的信息之后，与该员工相关的工作信息也会被删除！\r\n是否继续删除？？？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+                    {
+                        return;
+                    }
+
                     string sql = "update Personnel set enable = '2' where id =" + CurrentSelectNumber + ";";
                     int result = DbHelperOleDb.ExecuteSql(sql, new Dictionary<string, object>());
                     if (result > 0)
@@ -197,24 +224,57 @@ namespace WorkingHoursCalculation.Views
             {
                 //设置按钮状态
                 SetButtonStatus(false, false, true);
+
+                btn_Add.Text = "保 存";
+
                 //清空数据
                 ClearnNeiRong();
                 //可编辑状态
                 IsAddNeiRong(true);
                 //创建时间
                 labCreateTime.Text = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss");
-
-                btn_Add.Text = "保 存";
             }
             else  //(btn_Add.Text == "保存")
             {
-                if (string.IsNullOrEmpty(txtName.Text))
+                if (!string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
+                    //判断姓名是否重复
+                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "';";
+                    DataTable userUpdate = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
+                    if (userUpdate != null && userUpdate.Rows.Count > 0)
+                    {
+                        MessageBox.Show("该姓名信息已经存在，不能重复添加！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else
+                    {
+                        //执行更新
+                        Personnel personnel = new Personnel();
+                        personnel.name = DESJiaMi.Encrypt(txtName.Text.Trim());
+                        personnel.gender = cboxGender.Text != "" ? DESJiaMi.Encrypt(cboxGender.Text.Trim()) : "";
+                        personnel.lxdh = txtLxdh.Text != "" ? DESJiaMi.Encrypt(txtLxdh.Text.Trim()) : "";
+                        personnel.mainwork = richMainjob.Text;
+                        personnel.createtime = labCreateTime.Text;
+                        personnel.createusername = UserInfo.userName;
+                        personnel.enable = "1";
 
+                        if (DbHelperOleDb.Add(personnel, "Personnel", null))
+                        {
+                            MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ClearnNeiRong();                        //清空内容
+                            SetButtonStatus(true, true, true);      //重置按钮状态
+                            LoadPersonelInfo();                     //重新加载职工列表
+                            btn_Update.Text = "新 增";
+                        }
+                        else
+                        {
+                            MessageBox.Show("保存失败！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("请先输入需要保存的姓名！");
+                    MessageBox.Show("请先输入有效的“姓名”信息！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

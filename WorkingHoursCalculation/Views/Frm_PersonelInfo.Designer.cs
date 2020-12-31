@@ -29,7 +29,7 @@ namespace WorkingHoursCalculation.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,14 +76,14 @@ namespace WorkingHoursCalculation.Views
             this.datagridview.AllowUserToResizeRows = false;
             this.datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 11F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -224,7 +224,7 @@ namespace WorkingHoursCalculation.Views
             // 
             this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Update.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Update.Location = new System.Drawing.Point(5, 5);
+            this.btn_Update.Location = new System.Drawing.Point(16, 5);
             this.btn_Update.Margin = new System.Windows.Forms.Padding(5);
             this.btn_Update.Name = "btn_Update";
             this.btn_Update.Size = new System.Drawing.Size(75, 32);
@@ -237,7 +237,7 @@ namespace WorkingHoursCalculation.Views
             // 
             this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Delete.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Delete.Location = new System.Drawing.Point(90, 5);
+            this.btn_Delete.Location = new System.Drawing.Point(101, 5);
             this.btn_Delete.Margin = new System.Windows.Forms.Padding(5);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(75, 32);
@@ -250,7 +250,7 @@ namespace WorkingHoursCalculation.Views
             // 
             this.btn_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Add.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btn_Add.Location = new System.Drawing.Point(175, 5);
+            this.btn_Add.Location = new System.Drawing.Point(186, 5);
             this.btn_Add.Margin = new System.Windows.Forms.Padding(5);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(75, 32);
@@ -261,11 +261,12 @@ namespace WorkingHoursCalculation.Views
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.btn_Update);
-            this.flowLayoutPanel1.Controls.Add(this.btn_Delete);
             this.flowLayoutPanel1.Controls.Add(this.btn_Add);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Delete);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Update);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(354, 444);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flowLayoutPanel1.Size = new System.Drawing.Size(266, 42);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
@@ -285,6 +286,7 @@ namespace WorkingHoursCalculation.Views
             this.MinimizeBox = false;
             this.Name = "Frm_PersonelInfo";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.groupBox2.ResumeLayout(false);
