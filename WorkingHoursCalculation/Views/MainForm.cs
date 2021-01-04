@@ -90,7 +90,19 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Add_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(cboxUsers.Text))
+            {
+                Frm_AddWorkStatu frm_AddWorkStatu = new Frm_AddWorkStatu(cboxUsers.Text);
+                frm_AddWorkStatu.ShowDialog();
+                if (frm_AddWorkStatu.isAddSuccess)   //表示成功添加了信息，需进行刷新
+                {
+                    btn_Chaxun_Click(null, null);
+                }
+            }
+            else
+            {
+                MessageBox.Show("清先选择员工的\"姓名\"！", "新增", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>

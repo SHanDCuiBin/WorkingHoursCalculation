@@ -79,14 +79,14 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(589, 38);
+            this.panel2.Size = new System.Drawing.Size(525, 38);
             this.panel2.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.label4.Location = new System.Drawing.Point(396, 9);
+            this.label4.Location = new System.Drawing.Point(365, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(25, 20);
             this.label4.TabIndex = 5;
@@ -95,17 +95,19 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.dateTimePicker2.Location = new System.Drawing.Point(424, 6);
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(392, 6);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(157, 27);
+            this.dateTimePicker2.Size = new System.Drawing.Size(125, 27);
             this.dateTimePicker2.TabIndex = 4;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(235, 6);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(158, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(125, 27);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // label3
@@ -145,7 +147,7 @@
             this.panel3.Controls.Add(this.btn_Delete);
             this.panel3.Controls.Add(this.btn_Update);
             this.panel3.Controls.Add(this.btn_Chaxun);
-            this.panel3.Location = new System.Drawing.Point(598, 3);
+            this.panel3.Location = new System.Drawing.Point(534, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(561, 38);
             this.panel3.TabIndex = 1;
