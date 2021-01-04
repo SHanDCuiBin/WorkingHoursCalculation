@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WorkingHoursCalculation.Models
 {
-    class WorkingHours
+    public class WorkingHours
     {
         /// <summary>
         /// 姓名
@@ -27,6 +27,11 @@ namespace WorkingHoursCalculation.Models
         /// 扣除时间
         /// </summary>
         public string deduct { get; set; }
+
+        /// <summary>
+        /// 扣除原因
+        /// </summary>
+        public string deductreason { get; set; }
         /// <summary>
         ///记录状态 1 正常；2 删除
         /// </summary>

@@ -36,7 +36,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_Clearn = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_AddTimeInfo = new System.Windows.Forms.Button();
@@ -88,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 49);
+            this.label3.Location = new System.Drawing.Point(85, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
@@ -98,7 +97,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(224, 49);
+            this.label4.Location = new System.Drawing.Point(200, 49);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 20);
@@ -108,12 +107,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(359, 49);
+            this.label5.Location = new System.Drawing.Point(315, 49);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 20);
+            this.label5.Size = new System.Drawing.Size(129, 20);
             this.label5.TabIndex = 7;
-            this.label5.Text = "扣除时间";
+            this.label5.Text = "扣除时间（选填）";
             // 
             // label6
             // 
@@ -124,15 +123,6 @@
             this.label6.Size = new System.Drawing.Size(129, 20);
             this.label6.TabIndex = 8;
             this.label6.Text = "扣除原因（选填）";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(599, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 32);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "设 置";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // btn_Clearn
             // 
@@ -229,7 +219,6 @@
             this.Controls.Add(this.btn_AddTimeInfo);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.btn_Clearn);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -262,7 +251,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Clearn;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_AddTimeInfo;

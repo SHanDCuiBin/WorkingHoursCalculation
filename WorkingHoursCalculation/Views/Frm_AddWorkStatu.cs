@@ -7,12 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WorkingHoursCalculation.Helpers;
+using WorkingHoursCalculation.Models;
 using WorkingHoursCalculation.Views.UserControls;
 
 namespace WorkingHoursCalculation.Views
 {
     public partial class Frm_AddWorkStatu : Form
     {
+        /// <summary>
+        /// 当前添加采集人员的姓名
+        /// </summary>
+        private string gWorkerName = string.Empty;
         /// <summary>
         /// 标记打开此页面是否成功添加工作信息
         /// </summary>
@@ -30,11 +35,22 @@ namespace WorkingHoursCalculation.Views
         {
             InitializeComponent();
 
+            this.gWorkerName = workername;
+            Initialize();
+        }
+
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="workername"></param>
+        private void Initialize()
+        {
             //参加人员姓名
-            this.labName.Text = workername;
+            this.labName.Text = this.gWorkerName;
 
             #region 初始化日期
-            string sql = "Select workername,workdate from WorkingHours where workername='" + DESJiaMi.Encrypt(workername) + "' and isdelete='1' order by workdate desc;";
+            string sql = "Select workername,workdate from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and isdelete='1' order by workdate desc;";
             DataTable workdt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
             if (workdt != null && workdt.Rows.Count > 0)
             {
@@ -49,9 +65,13 @@ namespace WorkingHoursCalculation.Views
             }
             #endregion
 
-
-
+            int index = 1;
+            foreach (timeInfo item in flowLayoutPanel1.Controls)
+            {
+                item.labIndex.Text = (index++).ToString() + "、";
+            }
         }
+
 
         /// <summary>
         /// 【清空】
@@ -60,6 +80,9 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Clearn_Click(object sender, EventArgs e)
         {
+            flowLayoutPanel1.Controls.Clear();
+            //重新初始化
+            Initialize();
 
         }
 
@@ -70,7 +93,45 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(labName.Text))
+            {
 
+                if (flowLayoutPanel1.Controls.Count > 0)
+                {
+                    List<WorkingHours> worktimes = new List<WorkingHours>();
+                    foreach (timeInfo item in flowLayoutPanel1.Controls)
+                    {
+                        string error = "";
+                        if (!item.CheckResult(out error))
+                        {
+                            WorkingHours times = item.GetTimeResult();
+
+                            times.workername = DESJiaMi.Encrypt(this.gWorkerName);
+                            times.workdate = dateWorkDate.Value.ToString("yyyy-MM-dd");
+                            times.isdelete = "1";
+                            worktimes.Add(times);
+                        }
+                        else
+                        {
+                            MessageBox.Show("保存失败！\r\n" + error, "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        #region 判断时间是否有交叉选择的情况
+
+                        #endregion
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("未添加待保存的时间信息，保存失败！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("姓名信息错误，保存失败！！！", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>

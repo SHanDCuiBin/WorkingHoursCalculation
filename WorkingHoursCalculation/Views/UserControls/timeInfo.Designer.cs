@@ -131,6 +131,6 @@
         private System.Windows.Forms.ComboBox deductUnit;
         private System.Windows.Forms.TextBox txtdeductReason;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labIndex;
+        public System.Windows.Forms.Label labIndex;
     }
 }
