@@ -16,6 +16,9 @@ namespace WorkingHoursCalculation.Views
         {
             InitializeComponent();
 
+            //不显示未绑定的列
+            this.datagridview.AutoGenerateColumns = false;
+
             //初始化人员数据
             Initialize();
         }
@@ -25,9 +28,6 @@ namespace WorkingHoursCalculation.Views
         /// </summary>
         private void Initialize()
         {
-            //不显示未绑定的列
-            this.datagridview.AutoGenerateColumns = false;
-
             try
             {
                 string sql = "Select ID,name from Personnel where enable='1' order by ID;";
@@ -84,18 +84,33 @@ namespace WorkingHoursCalculation.Views
         private void btn_Chaxun_Click(object sender, EventArgs e)
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
-            string sql = "Select * from WorkingHours where enable='1'";
-            if (string.IsNullOrEmpty(cboxUsers.Text))
+            string sql = "Select * from WorkingHours where isdelete='1'";
+            if (!string.IsNullOrEmpty(cboxUsers.Text))
             {
                 sql += " and workername=@workername ";
                 dic.Add("workername", DESJiaMi.Encrypt(cboxUsers.Text));
             }
-            if (true)
+            if (startData.Value <= endData.Value)
             {
+                sql += " and workdate>=@workdate1";
+                dic.Add("workdate1", startData.Value.ToString("yyyy-MM-dd"));
 
+                sql += " and workdate<=@workdate2 ";
+                dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                MessageBox.Show("开始时间大于结束时间，未获取到结果！", "查询", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql, dic).Tables[0];
+            datagridview.DataSource = dt;
+
+            if (!backTianShu.IsBusy)
+            {
+                backTianShu.RunWorkerAsync(dt);
+            }
         }
 
         /// <summary>
@@ -121,23 +136,45 @@ namespace WorkingHoursCalculation.Views
         }
 
         /// <summary>
-        /// 【更新】
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_Update_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
         /// 【删除】
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_Delete_Click(object sender, EventArgs e)
         {
+            int num = datagridview.SelectedRows.Count;
+            if (num != 1)
+            {
+                MessageBox.Show("请只选择一条记录进行删除！！！", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            try
+            {
+                string workername = datagridview.SelectedRows[0].Cells["workername"].Value.ToString();
+                string workerDate = datagridview.SelectedRows[0].Cells["workdate"].Value.ToString();
+                if (!string.IsNullOrEmpty(workername) && !string.IsNullOrEmpty(workerDate))
+                {
+                    if (MessageBox.Show("是否确认删除员工：" + DESJiaMi.Decrypt(workername) + "，日期：" + workerDate + "的工作记录！", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1';";
+                        DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
+                        MessageBox.Show("删除成功！", "删除", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btn_Chaxun_Click(null, null);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("删除操作失败！！！", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
         }
         /// <summary>
         /// 【导出】
@@ -146,7 +183,41 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_outPut_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(cboxUsers.Text))
+            {
+                if (startData.Value <= endData.Value)
+                {
+                    Dictionary<string, object> dic = new Dictionary<string, object>();
+                    string sql = "Select * from WorkingHours where isdelete='1'";
 
+                    sql += " and workername=@workername ";
+                    dic.Add("workername", DESJiaMi.Encrypt(cboxUsers.Text));
+
+                    sql += " and workdate>=@workdate1";
+                    dic.Add("workdate1", startData.Value.ToString("yyyy-MM-dd"));
+
+                    sql += " and workdate<=@workdate2 ";
+                    dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
+
+                    DataTable dt = DbHelperOleDb.Query(sql, dic).Tables[0];
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("该员工在当前选择的时间段内无工作信息记录，无法进行导出！！！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("导出的“开始时间”大于“结束时间，无法进行导出”！！！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请先选择要导出的员工姓名！！！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -158,8 +229,117 @@ namespace WorkingHoursCalculation.Views
         {
             Frm_PersonelInfo frm_PersonelInfo = new Frm_PersonelInfo();
             frm_PersonelInfo.ShowDialog();
+            if (frm_PersonelInfo.updateORAddSuccess)   //重新刷新用户列表
+            {
+                Initialize();
+                datagridview.DataSource = null;
+            }
         }
         #endregion
+
+
+        /// <summary>
+        /// 列显示转义
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void datagridview_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            string columnName = datagridview.Columns[e.ColumnIndex].Name;
+            if (columnName == "workername")
+            {
+                if (!string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.Value = DESJiaMi.Decrypt(e.Value.ToString());
+                }
+            }
+            else if (columnName == "duration")
+            {
+                try
+                {
+                    string timeStart = datagridview.Rows[e.RowIndex].Cells["starttime"].Value.ToString();
+                    string timeEnd = datagridview.Rows[e.RowIndex].Cells["endtime"].Value.ToString();
+                    if (!string.IsNullOrEmpty(timeStart) && !string.IsNullOrEmpty(timeEnd))
+                    {
+                        DateTime dtStart = DateTime.Now;   //开始时间
+                        DateTime dtEnd = DateTime.Now;     //结束时间
+                        if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
+                        {
+                            double times = GetTimeDuration(dtStart, dtEnd);
+                            string deductTime = datagridview.Rows[e.RowIndex].Cells["deduct"].Value.ToString();
+                            if (!string.IsNullOrEmpty(deductTime))
+                            {
+                                e.Value = (times - double.Parse(deductTime)).ToString("0.00");
+                            }
+                            else
+                            {
+                                e.Value = times.ToString("0.00");
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+        }
+
+        #region 统计天数 工作总时长
+
+        double worktimers = 0.0;    //工作时长
+        private void backTianShu_DoWork(object sender, DoWorkEventArgs e)
+        {
+            worktimers = 0.0;    //工作时长
+            DataTable dt = e.Argument as DataTable;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DateTime dtStart = DateTime.Now;   //开始时间
+                DateTime dtEnd = DateTime.Now;     //结束时间
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string timeStart = dt.Rows[i]["starttime"].ToString();
+                    string timeEnd = dt.Rows[i]["endtime"].ToString();
+                    if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
+                    {
+                        double times = GetTimeDuration(dtStart, dtEnd);
+                        string deductTime = dt.Rows[i]["deduct"].ToString();
+                        if (!string.IsNullOrEmpty(deductTime))
+                        {
+                            worktimers += (times - double.Parse(deductTime));
+                        }
+                        else
+                        {
+                            worktimers += times;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        private void backTianShu_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            labShiChang.Text = worktimers.ToString("0.00") + "小时";
+        }
+        #endregion
+
+        /// <summary>
+        /// 根据时间获取时间差
+        /// </summary>
+        /// <param name="dtStart"></param>
+        /// <param name="dtEnd"></param>
+        /// <returns></returns>
+        private double GetTimeDuration(DateTime dtStart, DateTime dtEnd)
+        {
+            TimeSpan ts1 = new TimeSpan(dtStart.Ticks);
+            TimeSpan ts2 = new TimeSpan(dtEnd.Ticks);
+            TimeSpan ts = ts1.Subtract(ts2).Duration();
+
+            return ts.TotalHours;
+        }
+
 
     }
 }

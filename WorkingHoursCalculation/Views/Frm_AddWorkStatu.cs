@@ -124,15 +124,28 @@ namespace WorkingHoursCalculation.Views
                         string msg = "";
                         if (ListTimesJiaoCha(worktimes, out msg))
                         {
-                            //删除改人员当天的已经添加的数据
-                            try
+                            #region 判断添加的是否已经存在
+
+                            string selectStr = "Select * from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1';";
+                            DataTable dt = DbHelperOleDb.Query(selectStr, new Dictionary<string, object>()).Tables[0];
+                            if (dt != null && dt.Rows.Count > 0)
                             {
-                                string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1';";
-                                DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
+                                if (MessageBox.Show("该工作人员在" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "已经存在工作记录。是否覆盖添加？？？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+                                {
+                                    return;
+                                }
+
+                                //删除该人员当天的已经添加的数据
+                                try
+                                {
+                                    string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1';";
+                                    DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
+                                }
+                                catch (Exception)
+                                {
+                                }
                             }
-                            catch (Exception)
-                            {
-                            }
+                            #endregion
 
                             foreach (WorkingHours item in worktimes)
                             {

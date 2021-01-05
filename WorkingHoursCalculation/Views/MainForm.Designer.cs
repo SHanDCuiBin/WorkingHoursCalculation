@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.startData = new System.Windows.Forms.DateTimePicker();
+            this.endData = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.cboxUsers = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,18 +49,20 @@
             this.btn_Personnel = new System.Windows.Forms.Button();
             this.btn_Add = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
-            this.btn_Update = new System.Windows.Forms.Button();
             this.btn_Chaxun = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.workername = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.workdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.starttime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.结束时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deductreason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backTianShu = new System.ComponentModel.BackgroundWorker();
+            this.labShiChang = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,8 +87,8 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.dateTimePicker2);
-            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Controls.Add(this.startData);
+            this.panel2.Controls.Add(this.endData);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.cboxUsers);
             this.panel2.Controls.Add(this.label2);
@@ -99,23 +107,23 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "—";
             // 
-            // dateTimePicker2
+            // startData
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(392, 6);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(125, 27);
-            this.dateTimePicker2.TabIndex = 4;
+            this.startData.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.startData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.startData.Location = new System.Drawing.Point(235, 6);
+            this.startData.Name = "startData";
+            this.startData.Size = new System.Drawing.Size(125, 27);
+            this.startData.TabIndex = 2;
             // 
-            // dateTimePicker1
+            // endData
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(235, 6);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(125, 27);
-            this.dateTimePicker1.TabIndex = 2;
+            this.endData.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.endData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.endData.Location = new System.Drawing.Point(392, 6);
+            this.endData.Name = "endData";
+            this.endData.Size = new System.Drawing.Size(125, 27);
+            this.endData.TabIndex = 4;
             // 
             // label3
             // 
@@ -152,17 +160,16 @@
             this.panel3.Controls.Add(this.btn_Personnel);
             this.panel3.Controls.Add(this.btn_Add);
             this.panel3.Controls.Add(this.btn_Delete);
-            this.panel3.Controls.Add(this.btn_Update);
             this.panel3.Controls.Add(this.btn_Chaxun);
             this.panel3.Location = new System.Drawing.Point(534, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(561, 38);
+            this.panel3.Size = new System.Drawing.Size(461, 38);
             this.panel3.TabIndex = 1;
             // 
             // btn_outPut
             // 
             this.btn_outPut.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_outPut.Location = new System.Drawing.Point(358, 4);
+            this.btn_outPut.Location = new System.Drawing.Point(280, 5);
             this.btn_outPut.Name = "btn_outPut";
             this.btn_outPut.Size = new System.Drawing.Size(75, 30);
             this.btn_outPut.TabIndex = 6;
@@ -173,7 +180,7 @@
             // btn_Personnel
             // 
             this.btn_Personnel.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Personnel.Location = new System.Drawing.Point(445, 4);
+            this.btn_Personnel.Location = new System.Drawing.Point(370, 5);
             this.btn_Personnel.Name = "btn_Personnel";
             this.btn_Personnel.Size = new System.Drawing.Size(82, 30);
             this.btn_Personnel.TabIndex = 5;
@@ -184,7 +191,7 @@
             // btn_Add
             // 
             this.btn_Add.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Add.Location = new System.Drawing.Point(97, 4);
+            this.btn_Add.Location = new System.Drawing.Point(100, 4);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(75, 30);
             this.btn_Add.TabIndex = 3;
@@ -195,24 +202,13 @@
             // btn_Delete
             // 
             this.btn_Delete.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Delete.Location = new System.Drawing.Point(271, 4);
+            this.btn_Delete.Location = new System.Drawing.Point(190, 5);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(75, 30);
             this.btn_Delete.TabIndex = 2;
             this.btn_Delete.Text = "删 除";
             this.btn_Delete.UseVisualStyleBackColor = true;
             this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
-            // 
-            // btn_Update
-            // 
-            this.btn_Update.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Update.Location = new System.Drawing.Point(184, 4);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(75, 30);
-            this.btn_Update.TabIndex = 1;
-            this.btn_Update.Text = "修 改";
-            this.btn_Update.UseVisualStyleBackColor = true;
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
             // btn_Chaxun
             // 
@@ -244,7 +240,7 @@
             this.datagridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -255,8 +251,9 @@
             this.workername,
             this.workdate,
             this.starttime,
-            this.结束时间,
+            this.endtime,
             this.deduct,
+            this.duration,
             this.deductreason});
             this.datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datagridview.Location = new System.Drawing.Point(0, 0);
@@ -264,61 +261,94 @@
             this.datagridview.RowTemplate.Height = 23;
             this.datagridview.Size = new System.Drawing.Size(1178, 469);
             this.datagridview.TabIndex = 0;
+            this.datagridview.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.datagridview_CellFormatting);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labShiChang);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(2, 526);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1180, 33);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // label5
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "总数：";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "总时长：";
             // 
             // workername
             // 
             this.workername.DataPropertyName = "workername";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workername.DefaultCellStyle = dataGridViewCellStyle2;
             this.workername.HeaderText = "姓名";
             this.workername.Name = "workername";
             // 
             // workdate
             // 
             this.workdate.DataPropertyName = "workdate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workdate.DefaultCellStyle = dataGridViewCellStyle3;
             this.workdate.HeaderText = "工作日期";
             this.workdate.Name = "workdate";
             // 
             // starttime
             // 
             this.starttime.DataPropertyName = "starttime";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.starttime.DefaultCellStyle = dataGridViewCellStyle4;
             this.starttime.HeaderText = "开始时间";
             this.starttime.Name = "starttime";
             // 
-            // 结束时间
+            // endtime
             // 
-            this.结束时间.DataPropertyName = "结束时间";
-            this.结束时间.HeaderText = "结束时间";
-            this.结束时间.Name = "结束时间";
+            this.endtime.DataPropertyName = "endtime";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.endtime.DefaultCellStyle = dataGridViewCellStyle5;
+            this.endtime.HeaderText = "结束时间";
+            this.endtime.Name = "endtime";
             // 
             // deduct
             // 
             this.deduct.DataPropertyName = "deduct";
-            this.deduct.HeaderText = "扣除时间";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.deduct.DefaultCellStyle = dataGridViewCellStyle6;
+            this.deduct.HeaderText = "扣除时间(小时)";
             this.deduct.Name = "deduct";
+            // 
+            // duration
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.duration.DefaultCellStyle = dataGridViewCellStyle7;
+            this.duration.HeaderText = "时长（小时）";
+            this.duration.Name = "duration";
             // 
             // deductreason
             // 
             this.deductreason.DataPropertyName = "deductreason";
             this.deductreason.HeaderText = "扣除原因";
             this.deductreason.Name = "deductreason";
+            // 
+            // backTianShu
+            // 
+            this.backTianShu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backTianShu_DoWork);
+            this.backTianShu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backTianShu_RunWorkerCompleted);
+            // 
+            // labShiChang
+            // 
+            this.labShiChang.AutoSize = true;
+            this.labShiChang.Location = new System.Drawing.Point(66, 9);
+            this.labShiChang.Name = "labShiChang";
+            this.labShiChang.Size = new System.Drawing.Size(32, 17);
+            this.labShiChang.TabIndex = 3;
+            this.labShiChang.Text = "      ";
             // 
             // MainForm
             // 
@@ -352,16 +382,15 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cboxUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+         private System.Windows.Forms.DateTimePicker endData;
+        private System.Windows.Forms.DateTimePicker startData;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+       
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btn_Update;
         private System.Windows.Forms.Button btn_Chaxun;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Button btn_Add;
@@ -369,11 +398,15 @@
         private System.Windows.Forms.Button btn_outPut;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView datagridview;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn workername;
         private System.Windows.Forms.DataGridViewTextBoxColumn workdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn starttime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 结束时间;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endtime;
         private System.Windows.Forms.DataGridViewTextBoxColumn deduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn duration;
         private System.Windows.Forms.DataGridViewTextBoxColumn deductreason;
+        private System.ComponentModel.BackgroundWorker backTianShu;
+        private System.Windows.Forms.Label labShiChang;
     }
 }

@@ -14,6 +14,10 @@ namespace WorkingHoursCalculation.Views
     public partial class Frm_PersonelInfo : Form
     {
         /// <summary>
+        /// 修改或者添加成功
+        /// </summary>
+        public bool updateORAddSuccess = false;
+        /// <summary>
         /// 用户数据集
         /// </summary>
         DataTable userdt = new DataTable();
@@ -138,6 +142,7 @@ namespace WorkingHoursCalculation.Views
                         termes.Add(new termList("id", "id1", CurrentSelectNumber, 0));
                         if (DbHelperOleDb.Update(personnel, "Personnel", termes, null, true))
                         {
+                             updateORAddSuccess = true;
                             MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //ClearnNeiRong();                        //清空内容
                             IsAddNeiRong(false);
@@ -200,6 +205,8 @@ namespace WorkingHoursCalculation.Views
 
                         //清空左侧显示内容
                         ClearnNeiRong();
+
+                         updateORAddSuccess = true;
                     }
                 }
                 else
@@ -260,6 +267,7 @@ namespace WorkingHoursCalculation.Views
 
                         if (DbHelperOleDb.Add(personnel, "Personnel", null))
                         {
+                             updateORAddSuccess = true;
                             MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ClearnNeiRong();                        //清空内容
                             SetButtonStatus(true, true, true);      //重置按钮状态

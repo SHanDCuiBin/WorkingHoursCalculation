@@ -225,7 +225,6 @@
             this.Name = "Frm_AddWorkStatu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "nix ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
