@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bll\ReportBll.cs" />
     <Compile Include="Helpers\ConfigOperator.cs" />
     <Compile Include="Helpers\DbHelperOleDb.cs" />
     <Compile Include="Helpers\DESJiaMi.cs" />
