@@ -42,9 +42,7 @@
             this.btn_DeletetimeInfo = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.timeInfo1 = new WorkingHoursCalculation.Views.UserControls.timeInfo();
-            this.timeInfo2 = new WorkingHoursCalculation.Views.UserControls.timeInfo();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.checkLianxu = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +66,9 @@
             // 
             // dateWorkDate
             // 
+            this.dateWorkDate.CalendarForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dateWorkDate.CalendarMonthBackground = System.Drawing.Color.WhiteSmoke;
+            this.dateWorkDate.CalendarTitleForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.dateWorkDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateWorkDate.Location = new System.Drawing.Point(259, 8);
             this.dateWorkDate.Name = "dateWorkDate";
@@ -127,7 +128,7 @@
             // btn_Clearn
             // 
             this.btn_Clearn.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_Clearn.Location = new System.Drawing.Point(12, 228);
+            this.btn_Clearn.Location = new System.Drawing.Point(7, 280);
             this.btn_Clearn.Name = "btn_Clearn";
             this.btn_Clearn.Size = new System.Drawing.Size(78, 35);
             this.btn_Clearn.TabIndex = 10;
@@ -138,7 +139,7 @@
             // btn_Save
             // 
             this.btn_Save.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_Save.Location = new System.Drawing.Point(567, 228);
+            this.btn_Save.Location = new System.Drawing.Point(588, 280);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(78, 35);
             this.btn_Save.TabIndex = 11;
@@ -148,7 +149,7 @@
             // 
             // btn_AddTimeInfo
             // 
-            this.btn_AddTimeInfo.Location = new System.Drawing.Point(651, 82);
+            this.btn_AddTimeInfo.Location = new System.Drawing.Point(667, 110);
             this.btn_AddTimeInfo.Name = "btn_AddTimeInfo";
             this.btn_AddTimeInfo.Size = new System.Drawing.Size(40, 52);
             this.btn_AddTimeInfo.TabIndex = 12;
@@ -158,7 +159,7 @@
             // 
             // btn_DeletetimeInfo
             // 
-            this.btn_DeletetimeInfo.Location = new System.Drawing.Point(651, 149);
+            this.btn_DeletetimeInfo.Location = new System.Drawing.Point(667, 177);
             this.btn_DeletetimeInfo.Name = "btn_DeletetimeInfo";
             this.btn_DeletetimeInfo.Size = new System.Drawing.Size(40, 52);
             this.btn_DeletetimeInfo.TabIndex = 13;
@@ -170,11 +171,9 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Controls.Add(this.timeInfo1);
-            this.flowLayoutPanel1.Controls.Add(this.timeInfo2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 72);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(637, 150);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(657, 202);
             this.flowLayoutPanel1.TabIndex = 14;
             // 
             // label7
@@ -187,32 +186,23 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "编号";
             // 
-            // timeInfo1
+            // checkLianxu
             // 
-            this.timeInfo1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.timeInfo1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.timeInfo1.Location = new System.Drawing.Point(4, 5);
-            this.timeInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.timeInfo1.Name = "timeInfo1";
-            this.timeInfo1.Size = new System.Drawing.Size(627, 38);
-            this.timeInfo1.TabIndex = 0;
-            // 
-            // timeInfo2
-            // 
-            this.timeInfo2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.timeInfo2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.timeInfo2.Location = new System.Drawing.Point(4, 53);
-            this.timeInfo2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.timeInfo2.Name = "timeInfo2";
-            this.timeInfo2.Size = new System.Drawing.Size(627, 38);
-            this.timeInfo2.TabIndex = 1;
+            this.checkLianxu.AutoSize = true;
+            this.checkLianxu.Location = new System.Drawing.Point(577, 7);
+            this.checkLianxu.Name = "checkLianxu";
+            this.checkLianxu.Size = new System.Drawing.Size(88, 24);
+            this.checkLianxu.TabIndex = 16;
+            this.checkLianxu.Text = "连续添加";
+            this.checkLianxu.UseVisualStyleBackColor = true;
             // 
             // Frm_AddWorkStatu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(694, 270);
+            this.ClientSize = new System.Drawing.Size(710, 322);
+            this.Controls.Add(this.checkLianxu);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btn_DeletetimeInfo);
@@ -235,7 +225,7 @@
             this.Name = "Frm_AddWorkStatu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.Text = "nix ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,7 +247,6 @@
         private System.Windows.Forms.Button btn_DeletetimeInfo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label7;
-        private UserControls.timeInfo timeInfo1;
-        private UserControls.timeInfo timeInfo2;
+        private System.Windows.Forms.CheckBox checkLianxu;
     }
 }

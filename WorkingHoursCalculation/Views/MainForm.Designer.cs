@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,6 +49,12 @@
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.workername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.starttime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.结束时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deductreason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -230,8 +237,27 @@
             // 
             // datagridview
             // 
+            this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
+            this.datagridview.AllowUserToResizeRows = false;
+            this.datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.datagridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.workername,
+            this.workdate,
+            this.starttime,
+            this.结束时间,
+            this.deduct,
+            this.deductreason});
             this.datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datagridview.Location = new System.Drawing.Point(0, 0);
             this.datagridview.Name = "datagridview";
@@ -257,6 +283,42 @@
             this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "总数：";
+            // 
+            // workername
+            // 
+            this.workername.DataPropertyName = "workername";
+            this.workername.HeaderText = "姓名";
+            this.workername.Name = "workername";
+            // 
+            // workdate
+            // 
+            this.workdate.DataPropertyName = "workdate";
+            this.workdate.HeaderText = "工作日期";
+            this.workdate.Name = "workdate";
+            // 
+            // starttime
+            // 
+            this.starttime.DataPropertyName = "starttime";
+            this.starttime.HeaderText = "开始时间";
+            this.starttime.Name = "starttime";
+            // 
+            // 结束时间
+            // 
+            this.结束时间.DataPropertyName = "结束时间";
+            this.结束时间.HeaderText = "结束时间";
+            this.结束时间.Name = "结束时间";
+            // 
+            // deduct
+            // 
+            this.deduct.DataPropertyName = "deduct";
+            this.deduct.HeaderText = "扣除时间";
+            this.deduct.Name = "deduct";
+            // 
+            // deductreason
+            // 
+            this.deductreason.DataPropertyName = "deductreason";
+            this.deductreason.HeaderText = "扣除原因";
+            this.deductreason.Name = "deductreason";
             // 
             // MainForm
             // 
@@ -307,5 +369,11 @@
         private System.Windows.Forms.Button btn_outPut;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView datagridview;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn starttime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 结束时间;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deductreason;
     }
 }

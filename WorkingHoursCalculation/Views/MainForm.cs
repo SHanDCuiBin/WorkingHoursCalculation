@@ -25,6 +25,9 @@ namespace WorkingHoursCalculation.Views
         /// </summary>
         private void Initialize()
         {
+            //不显示未绑定的列
+            this.datagridview.AutoGenerateColumns = false;
+
             try
             {
                 string sql = "Select ID,name from Personnel where enable='1' order by ID;";
@@ -80,7 +83,19 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void btn_Chaxun_Click(object sender, EventArgs e)
         {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            string sql = "Select * from WorkingHours where enable='1'";
+            if (string.IsNullOrEmpty(cboxUsers.Text))
+            {
+                sql += " and workername=@workername ";
+                dic.Add("workername", DESJiaMi.Encrypt(cboxUsers.Text));
+            }
+            if (true)
+            {
 
+            }
+
+            DataTable dt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
         }
 
         /// <summary>

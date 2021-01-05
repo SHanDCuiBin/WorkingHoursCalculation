@@ -138,7 +138,7 @@ namespace WorkingHoursCalculation.Views.UserControls
             }
             else
             {
-                error = labIndex.Text + "中：开始时间大约结束时间。";
+                error = labIndex.Text + "中：开始时间大于等于结束时间。";
                 return false;
             }
             return true;
