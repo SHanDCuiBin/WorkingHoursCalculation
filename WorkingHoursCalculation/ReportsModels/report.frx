@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/06/2021 16:47:14" ReportInfo.CreatorVersion="2014.4.8.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/06/2021 17:42:17" ReportInfo.CreatorVersion="2014.4.8.0">
   <Dictionary/>
   <ReportPage Name="Page2" RawPaperSize="9">
     <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="207.9">
@@ -31,27 +31,27 @@
           <TableCell Name="Cell6" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell7" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell8" Border.Lines="All" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell9" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell10" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell28" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell28" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell29" Border.Lines="All" Font="微软雅黑, 9pt"/>
         </TableRow>
         <TableRow Name="Row3" Height="28.35">
           <TableCell Name="Cell11" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell12" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell13" Border.Lines="All" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell14" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell15" Border.Lines="All" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell30" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell30" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell31" Border.Lines="All" Font="微软雅黑, 9pt"/>
         </TableRow>
         <TableRow Name="Row4" Height="28.35">
           <TableCell Name="Cell16" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell17" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell18" Border.Lines="All" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell19" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell20" Font="微软雅黑, 9pt"/>
-          <TableCell Name="Cell32" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell20" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell32" Border.Lines="All" Font="微软雅黑, 9pt"/>
           <TableCell Name="Cell33" Border.Lines="All" Font="微软雅黑, 9pt"/>
         </TableRow>
       </TableObject>
