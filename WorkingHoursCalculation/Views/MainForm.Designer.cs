@@ -52,8 +52,6 @@
             this.btn_Chaxun = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.workername = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.workdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.starttime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,8 +59,11 @@
             this.deduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deductreason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backTianShu = new System.ComponentModel.BackgroundWorker();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.labShiChang = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.backTianShu = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -78,6 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -263,26 +265,6 @@
             this.datagridview.TabIndex = 0;
             this.datagridview.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.datagridview_CellFormatting);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.labShiChang);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(2, 526);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1180, 33);
-            this.panel1.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "总时长：";
-            // 
             // workername
             // 
             this.workername.DataPropertyName = "workername";
@@ -336,10 +318,16 @@
             this.deductreason.HeaderText = "扣除原因";
             this.deductreason.Name = "deductreason";
             // 
-            // backTianShu
+            // panel1
             // 
-            this.backTianShu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backTianShu_DoWork);
-            this.backTianShu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backTianShu_RunWorkerCompleted);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.labShiChang);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(2, 526);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1180, 33);
+            this.panel1.TabIndex = 1;
             // 
             // labShiChang
             // 
@@ -349,6 +337,31 @@
             this.labShiChang.Size = new System.Drawing.Size(32, 17);
             this.labShiChang.TabIndex = 3;
             this.labShiChang.Text = "      ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "总时长：";
+            // 
+            // backTianShu
+            // 
+            this.backTianShu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backTianShu_DoWork);
+            this.backTianShu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backTianShu_RunWorkerCompleted);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.button1.Location = new System.Drawing.Point(1001, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "导 出";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -408,5 +421,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deductreason;
         private System.ComponentModel.BackgroundWorker backTianShu;
         private System.Windows.Forms.Label labShiChang;
+        private System.Windows.Forms.Button button1;
     }
 }

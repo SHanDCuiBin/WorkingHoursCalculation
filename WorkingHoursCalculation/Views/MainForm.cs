@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastReport;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkingHoursCalculation.Bll;
 using WorkingHoursCalculation.Helpers;
 
 namespace WorkingHoursCalculation.Views
@@ -131,7 +133,7 @@ namespace WorkingHoursCalculation.Views
             }
             else
             {
-                MessageBox.Show("清先选择员工的\"姓名\"！", "新增", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("请先选择员工的\"姓名\"！", "新增", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -155,7 +157,7 @@ namespace WorkingHoursCalculation.Views
                 string workerDate = datagridview.SelectedRows[0].Cells["workdate"].Value.ToString();
                 if (!string.IsNullOrEmpty(workername) && !string.IsNullOrEmpty(workerDate))
                 {
-                    if (MessageBox.Show("是否确认删除员工：" + DESJiaMi.Decrypt(workername) + "，日期：" + workerDate + "的工作记录！", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    if (MessageBox.Show("是否确认删除员工：" + DESJiaMi.Decrypt(workername) + "，日期：" + workerDate + " 的工作记录！", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1';";
                         DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
@@ -167,11 +169,9 @@ namespace WorkingHoursCalculation.Views
                         return;
                     }
                 }
-
             }
             catch (Exception)
             {
-
                 MessageBox.Show("删除操作失败！！！", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -202,7 +202,26 @@ namespace WorkingHoursCalculation.Views
                     DataTable dt = DbHelperOleDb.Query(sql, dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
+                        SaveFileDialog sfd = new SaveFileDialog();
 
+                        //设置文件类型 
+                        sfd.Filter = "PDF（*.pdf）|*.pdf";
+
+                        //设置默认文件类型显示顺序 
+                        sfd.FilterIndex = 1;
+
+                        //保存对话框是否记忆上次打开的目录 
+                        sfd.RestoreDirectory = true;
+
+
+                        //点了保存按钮进入 
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            string localFilePath = sfd.FileName.ToString(); //获得文件路径 
+
+                            ReportBll reportBll = new ReportBll();
+                            reportBll.ReportExport(localFilePath);
+                        }
                     }
                     else
                     {
@@ -211,7 +230,7 @@ namespace WorkingHoursCalculation.Views
                 }
                 else
                 {
-                    MessageBox.Show("导出的“开始时间”大于“结束时间，无法进行导出”！！！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("导出的“开始时间”大于“结束时间”，无法进行导出！！！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
@@ -245,7 +264,6 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void datagridview_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
             string columnName = datagridview.Columns[e.ColumnIndex].Name;
             if (columnName == "workername")
             {
@@ -340,6 +358,36 @@ namespace WorkingHoursCalculation.Views
             return ts.TotalHours;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // create report instance
+            Report report = new Report();
 
+            // load the existing report
+            report.Load(@"..\..\report.frx");
+
+
+            DataSet FDataSet = new DataSet();
+
+            DataTable table = new DataTable();
+            table.TableName = "Employees";
+            FDataSet.Tables.Add(table);
+
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+
+            table.Rows.Add(1, "Andrew Fuller");
+            table.Rows.Add(2, "Nancy Davolio");
+            table.Rows.Add(3, "Margaret Peacock");
+
+            // register the dataset
+            report.RegisterData(FDataSet);
+
+            // run the report
+            report.Show();
+
+            // free resources used by report
+            report.Dispose();
+        }
     }
 }
