@@ -63,7 +63,6 @@
             this.labShiChang = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.backTianShu = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,7 +78,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -352,17 +350,6 @@
             this.backTianShu.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backTianShu_DoWork);
             this.backTianShu.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backTianShu_RunWorkerCompleted);
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.button1.Location = new System.Drawing.Point(1001, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "导 出";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -421,6 +408,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deductreason;
         private System.ComponentModel.BackgroundWorker backTianShu;
         private System.Windows.Forms.Label labShiChang;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -1,10 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/06/2021 14:24:19" ReportInfo.CreatorVersion="2014.4.8.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/06/2021 16:47:14" ReportInfo.CreatorVersion="2014.4.8.0">
   <Dictionary/>
-  <ReportPage Name="Page2">
-    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="132.3">
-      <TextObject Name="Text1" Left="28.35" Top="18.9" Width="94.5" Height="18.9" Text="梵蒂冈他的歌突然他" VertAlign="Center" Font="宋体, 9pt"/>
+  <ReportPage Name="Page2" RawPaperSize="9">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="207.9">
+      <TextObject Name="Text1" Left="66.15" Top="28.35" Width="236.25" Height="18.9" Text="姓名：[workername]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text2" Left="66.15" Top="66.15" Width="236.25" Height="18.9" Text="性别：[gender]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text3" Left="37.8" Top="103.95" Width="236.25" Height="18.9" Text="联系电话：[lxdh]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text4" Left="37.8" Top="141.75" Width="652.05" Height="18.9" Text="主要工作：[mainwork]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text5" Left="37.8" Top="179.55" Width="434.7" Height="18.9" Text="统计时间：[dateLimit]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
     </ReportTitleBand>
-    <DataBand Name="Data2" Top="136.3" Width="718.2" Height="756"/>
+    <DataBand Name="Data2" Top="211.9" Width="718.2" Height="756">
+      <TableObject Name="TableOfDay" Left="28.35" Top="47.25" Width="652.05" Height="119.07" Border.Lines="All">
+        <TableColumn Name="Column1" Width="64.26"/>
+        <TableColumn Name="Column2" Width="83.16"/>
+        <TableColumn Name="Column3" Width="83.16"/>
+        <TableColumn Name="Column4" Width="54.81"/>
+        <TableColumn Name="Column5" Width="83.16"/>
+        <TableColumn Name="Column6" Width="198.45"/>
+        <TableColumn Name="Column7" Width="85.05"/>
+        <TableRow Name="Row1" Height="34.02">
+          <TableCell Name="Cell1" Border.Lines="All" Text="日期" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell2" Border.Lines="All" Text="开始时间" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell3" Border.Lines="All" Text="结束时间" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="扣除时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" Text="扣除原因" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+          <TableCell Name="Cell27" Border.Lines="All" Text="累计时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑 Light, 10pt, style=Bold"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="28.35">
+          <TableCell Name="Cell6" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell9" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell10" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell28" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Font="微软雅黑, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="28.35">
+          <TableCell Name="Cell11" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell14" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell15" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell30" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell31" Border.Lines="All" Font="微软雅黑, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="28.35">
+          <TableCell Name="Cell16" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell19" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell20" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell32" Font="微软雅黑, 9pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Font="微软雅黑, 9pt"/>
+        </TableRow>
+      </TableObject>
+      <TableObject Name="Table1" Left="28.35" Top="9.45" Width="651.19" Height="28.35" Fill.Color="LightGray">
+        <TableColumn Name="Column8" Width="499.99"/>
+        <TableColumn Name="Column9" Width="151.2"/>
+        <TableRow Name="Row5" Height="28.35">
+          <TableCell Name="Cell34" Text="每日工作详情统计" Font="微软雅黑, 14pt"/>
+          <TableCell Name="Cell35" Font="宋体, 9pt"/>
+        </TableRow>
+      </TableObject>
+    </DataBand>
   </ReportPage>
 </Report>
