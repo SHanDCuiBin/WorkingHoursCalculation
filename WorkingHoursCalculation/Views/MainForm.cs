@@ -106,7 +106,7 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql, dic).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql +" order by workdate", dic).Tables[0];
             datagridview.DataSource = dt;
 
             if (!backTianShu.IsBusy)
@@ -199,7 +199,7 @@ namespace WorkingHoursCalculation.Views
                     sql += " and workdate<=@workdate2 ";
                     dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
 
-                    DataTable dt = DbHelperOleDb.Query(sql, dic).Tables[0];
+                    DataTable dt = DbHelperOleDb.Query(sql+"order by workdate", dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         ReportBll reportBll = new ReportBll();
@@ -278,11 +278,11 @@ namespace WorkingHoursCalculation.Views
                             string deductTime = datagridview.Rows[e.RowIndex].Cells["deduct"].Value.ToString();
                             if (!string.IsNullOrEmpty(deductTime))
                             {
-                                e.Value = (times - double.Parse(deductTime)).ToString("0.00");
+                                e.Value = (times - double.Parse(deductTime)).ToString("0.000");
                             }
                             else
                             {
-                                e.Value = times.ToString("0.00");
+                                e.Value = times.ToString("0.000");
                             }
                         }
                     }
@@ -329,7 +329,7 @@ namespace WorkingHoursCalculation.Views
 
         private void backTianShu_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            labShiChang.Text = worktimers.ToString("0.00") + "小时";
+            labShiChang.Text = worktimers.ToString("0.000") + "小时";
         }
         #endregion
 

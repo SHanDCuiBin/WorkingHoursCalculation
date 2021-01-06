@@ -4,6 +4,7 @@ using FastReport.Table;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -73,13 +74,37 @@ namespace WorkingHoursCalculation.Bll
                     //统计时间
                     report.SetParameterValue("dateLimit", dateLimit);
 
-                    FastReport.Table.TableObject TableOfDay = report.FindObject("TableOfDay") as FastReport.Table.TableObject;
-                    TableOfDay.Rows.Add(new TableRow());
-                    TableOfDay.Rows.Add(new TableRow());
-                    TableOfDay.Rows.Add(new TableRow());
 
-                    TableOfDay.Rows[1][1].Text = "123456";
-                    TableOfDay.Rows[4][1].Border.Lines = BorderLines.All;
+                    TableObject TableOfDay = report.FindObject("TableOfDay") as TableObject;
+                    List<DataRow> drs = new List<DataRow>();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        if (drs.Count != 0)
+                        {
+                            string workdate = dt.Rows[i]["workdate"].ToString();
+                            if (drs[0]["workdate"].ToString() == workdate)
+                            {
+                                drs.Add(dt.Rows[i]);
+                                continue;
+                            }
+                            else
+                            {
+                                TableAddRows(TableOfDay, drs.Count);
+                                SetValueInReportOfDayInfo(TableOfDay, drs, i + 1 - drs.Count);
+                                drs = new List<DataRow>();
+                                drs.Add(dt.Rows[i]);
+                            }
+                        }
+                        else
+                        {
+                            drs.Add(dt.Rows[i]);
+                            continue;
+                        }
+                    }
+
+                    TableAddRows(TableOfDay, drs.Count);
+                    SetValueInReportOfDayInfo(TableOfDay, drs, dt.Rows.Count + 1 - drs.Count);
+                    drs = new List<DataRow>();
 
                 }
                 else
@@ -100,6 +125,106 @@ namespace WorkingHoursCalculation.Bll
         }
 
         /// <summary>
+        /// 给表格赋值
+        /// </summary>
+        /// <param name="drs"></param>
+        /// <param name="rowIndex"></param>
+        private void SetValueInReportOfDayInfo(TableObject TableOfDa, List<DataRow> drs, int rowIndex)
+        {
+            if (drs != null && drs.Count > 0)
+            {
+                int num = 1;
+                foreach (DataRow item in drs)
+                {
+                    if (num == 1)
+                    {
+                        TableOfDa.Rows[rowIndex][0].Text = item["workdate"].ToString();
+                        TableOfDa.Rows[rowIndex][6].Text = GetCumulativeTime(drs).ToString("0.000");
+                    }
+                    TableOfDa.Rows[rowIndex][1].Text = item["starttime"].ToString();
+                    TableOfDa.Rows[rowIndex][2].Text = item["endtime"].ToString();
+
+                    //计算时长
+                    string timeStart = item["starttime"].ToString();
+                    string timeEnd = item["endtime"].ToString();
+                    if (!string.IsNullOrEmpty(timeStart) && !string.IsNullOrEmpty(timeEnd))
+                    {
+                        DateTime dtStart = DateTime.Now;   //开始时间
+                        DateTime dtEnd = DateTime.Now;     //结束时间
+                        if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
+                        {
+                            TableOfDa.Rows[rowIndex][3].Text = GetTimeDuration(dtStart, dtEnd).ToString("0.000");
+                        }
+                    }
+
+                    TableOfDa.Rows[rowIndex][4].Text = item["deduct"].ToString();
+                    TableOfDa.Rows[rowIndex][5].Text = item["deductreason"].ToString();
+                    num++;
+                    rowIndex++;
+                }
+            }
+        }
+        /// <summary> 
+        /// 获取累计时间 单位 小时  
+        /// </summary>
+        private double GetCumulativeTime(List<DataRow> drs)
+        {
+            try
+            {
+                double timeValue = 0.0;
+                if (drs != null && drs.Count > 0)
+                {
+                    if (drs[0].Table.Columns.Contains("starttime") && drs[0].Table.Columns.Contains("endtime"))
+                    {
+                        foreach (DataRow item in drs)
+                        {
+                            string timeStart = item["starttime"].ToString();
+                            string timeEnd = item["endtime"].ToString();
+                            if (!string.IsNullOrEmpty(timeStart) && !string.IsNullOrEmpty(timeEnd))
+                            {
+                                DateTime dtStart = DateTime.Now;   //开始时间
+                                DateTime dtEnd = DateTime.Now;     //结束时间
+                                if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
+                                {
+                                    double times = GetTimeDuration(dtStart, dtEnd);
+                                    string deductTime = item["deduct"].ToString();
+                                    if (!string.IsNullOrEmpty(deductTime))
+                                    {
+                                        timeValue += (times - double.Parse(deductTime));
+                                    }
+                                    else
+                                    {
+                                        timeValue += times;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return timeValue;
+            }
+            catch (Exception)
+            {
+                return 0.0; ;
+            }
+        }
+
+        /// <summary>
+        /// 根据时间获取时间差
+        /// </summary>
+        /// <param name="dtStart"></param>
+        /// <param name="dtEnd"></param>
+        /// <returns></returns>
+        private double GetTimeDuration(DateTime dtStart, DateTime dtEnd)
+        {
+            TimeSpan ts1 = new TimeSpan(dtStart.Ticks);
+            TimeSpan ts2 = new TimeSpan(dtEnd.Ticks);
+            TimeSpan ts = ts1.Subtract(ts2).Duration();
+
+            return ts.TotalHours;
+        }
+
+        /// <summary>
         /// 设置单元格样式 及 文字样式
         /// </summary>
         private void SetCellStyles(TableCell tableCell)
@@ -110,6 +235,8 @@ namespace WorkingHoursCalculation.Bll
             tableCell.VertAlign = VertAlign.Center;
             //“文字”水平位置
             tableCell.HorzAlign = HorzAlign.Center;
+
+            tableCell.Font = new Font("微软雅黑", 9);
         }
 
         /// <summary>
@@ -117,12 +244,25 @@ namespace WorkingHoursCalculation.Bll
         /// </summary>
         private void TableAddRows(TableObject table, int rowNums)
         {
+            int uniteStart = table.Rows.Count;
+            int tableColumns = table.Columns.Count;
             if (rowNums > 0)
             {
                 for (int i = 0; i < rowNums; i++)
                 {
-                    table.Rows.Add(new TableRow());
+                    TableRow row = new TableRow();
+                    table.Rows.Add(row);
+                    row.Height =28f ;
+                    for (int j = 0; j < table.ColumnCount; j++)
+                    {
+                        SetCellStyles(row[j]);
+                    }
                 }
+
+                #region 合并单元格
+                table.Rows[uniteStart][0].RowSpan = rowNums;
+                table.Rows[uniteStart][tableColumns - 1].RowSpan = rowNums;
+                #endregion
             }
         }
 
