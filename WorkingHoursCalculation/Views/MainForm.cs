@@ -106,7 +106,7 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql +" order by workdate", dic).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql + " order by workdate", dic).Tables[0];
             datagridview.DataSource = dt;
 
             if (!backTianShu.IsBusy)
@@ -199,12 +199,13 @@ namespace WorkingHoursCalculation.Views
                     sql += " and workdate<=@workdate2 ";
                     dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
 
-                    DataTable dt = DbHelperOleDb.Query(sql+"order by workdate", dic).Tables[0];
+                    DataTable dt = DbHelperOleDb.Query(sql + "order by workdate", dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         ReportBll reportBll = new ReportBll();
-                        reportBll.RegisterData(dt, cboxUsers.Text, startData.Value.ToString("yyyy.MM.dd") + "—" + endData.Value.ToString("yyyy.MM.dd"));
-                        if (reportBll.ReportExport())
+                        string timeLimit = startData.Value.ToString("yyyy.MM.dd") + "—" + endData.Value.ToString("yyyy.MM.dd");
+                        reportBll.RegisterData(dt, cboxUsers.Text, timeLimit);
+                        if (reportBll.ReportExport(cboxUsers.Text + "-" + timeLimit + ".pdf"))
                         {
                             MessageBox.Show("工作报表生成完成！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }

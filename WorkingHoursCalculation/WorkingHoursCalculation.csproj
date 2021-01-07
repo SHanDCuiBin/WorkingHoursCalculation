@@ -85,6 +85,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\MonthYearPrintf.cs" />
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Models\termList.cs" />
     <Compile Include="Models\UserInfo.cs" />

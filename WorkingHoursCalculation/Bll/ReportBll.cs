@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WorkingHoursCalculation.Helpers;
+using WorkingHoursCalculation.Models;
 
 namespace WorkingHoursCalculation.Bll
 {
@@ -74,38 +75,96 @@ namespace WorkingHoursCalculation.Bll
                     //统计时间
                     report.SetParameterValue("dateLimit", dateLimit);
 
-
-                    TableObject TableOfDay = report.FindObject("TableOfDay") as TableObject;
-                    List<DataRow> drs = new List<DataRow>();
+                    TableObject TableOfDay = report.FindObject("TableOfDay") as TableObject;      //每日统计表格
+                    TableObject TableOfMonth = report.FindObject("TableOfMonth") as TableObject;  //每月统计表格
+                    TableObject TableOfYear = report.FindObject("TableOfYear") as TableObject;    //每年统计表格
+                    List<DataRow> drsDay = new List<DataRow>();     //每一天
+                    List<DataRow> drsMonth = new List<DataRow>();   //每一月
+                    List<DataRow> drsYear = new List<DataRow>();    //每一年
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        if (drs.Count != 0)
+                        string workdate = dt.Rows[i]["workdate"].ToString();
+                        #region 天
+                        if (drsDay.Count != 0)
                         {
-                            string workdate = dt.Rows[i]["workdate"].ToString();
-                            if (drs[0]["workdate"].ToString() == workdate)
+                            if (drsDay[0]["workdate"].ToString() == workdate)
                             {
-                                drs.Add(dt.Rows[i]);
-                                continue;
+                                drsDay.Add(dt.Rows[i]);
                             }
                             else
                             {
-                                TableAddRows(TableOfDay, drs.Count);
-                                SetValueInReportOfDayInfo(TableOfDay, drs, i + 1 - drs.Count);
-                                drs = new List<DataRow>();
-                                drs.Add(dt.Rows[i]);
+                                TableAddRows(TableOfDay, drsDay.Count);
+                                SetValueInReportOfDayInfo(TableOfDay, drsDay, i + 1 - drsDay.Count);
+                                drsDay = new List<DataRow>();
+                                drsDay.Add(dt.Rows[i]);
                             }
                         }
                         else
                         {
-                            drs.Add(dt.Rows[i]);
-                            continue;
+                            drsDay.Add(dt.Rows[i]);
                         }
+                        #endregion
+
+                        #region 月份
+                        if (drsMonth.Count != 0)
+                        {
+                            if (drsMonth[0]["workdate"].ToString().Substring(0, 7) == workdate.Substring(0, 7))
+                            {
+                                drsMonth.Add(dt.Rows[i]);
+                            }
+                            else
+                            {
+                                TableAddRows(TableOfMonth, 1);
+                                SetValueInReportOfMonthYearInfo(TableOfMonth, drsMonth, "Month");
+                                drsMonth = new List<DataRow>();
+                                drsMonth.Add(dt.Rows[i]);
+                            }
+                        }
+                        else
+                        {
+                            drsMonth.Add(dt.Rows[i]);
+                        }
+                        #endregion
+
+                        #region 年份
+                        if (drsYear.Count != 0)
+                        {
+                            if (drsYear[0]["workdate"].ToString().Substring(0, 4) == workdate.Substring(0, 4))
+                            {
+                                drsYear.Add(dt.Rows[i]);
+                            }
+                            else
+                            {
+                                TableAddRows(TableOfYear, 1);
+                                SetValueInReportOfMonthYearInfo(TableOfYear, drsYear, "Year");
+                                drsYear = new List<DataRow>();
+                                drsYear.Add(dt.Rows[i]);
+                            }
+                        }
+                        else
+                        {
+                            drsYear.Add(dt.Rows[i]);
+                        }
+                        #endregion
+
                     }
+                    TableAddRows(TableOfDay, drsDay.Count);
+                    SetValueInReportOfDayInfo(TableOfDay, drsDay, dt.Rows.Count + 1 - drsDay.Count);
 
-                    TableAddRows(TableOfDay, drs.Count);
-                    SetValueInReportOfDayInfo(TableOfDay, drs, dt.Rows.Count + 1 - drs.Count);
-                    drs = new List<DataRow>();
+                    TableAddRows(TableOfMonth, 1);
+                    SetValueInReportOfMonthYearInfo(TableOfMonth, drsMonth, "Month");
 
+                    TableAddRows(TableOfYear, 1);
+                    SetValueInReportOfMonthYearInfo(TableOfYear, drsYear, "Year");
+
+                    //累计时长
+                    List<DataRow> drs = new List<DataRow>();
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        drs.Add(item);
+                    }
+                    double SumTimes = GetCumulativeTime(drs);
+                    report.SetParameterValue("timesSums", SumTimes.ToString("0.00"));
                 }
                 else
                 {
@@ -125,7 +184,7 @@ namespace WorkingHoursCalculation.Bll
         }
 
         /// <summary>
-        /// 给表格赋值
+        /// 给表格赋值-"日期"
         /// </summary>
         /// <param name="drs"></param>
         /// <param name="rowIndex"></param>
@@ -162,6 +221,120 @@ namespace WorkingHoursCalculation.Bll
                     num++;
                     rowIndex++;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 给表格赋值-"月份","年份"
+        /// </summary>
+        /// <param name="TableOfDa"></param>
+        /// <param name="drs"></param>
+        /// <param name="type"></param>
+        private void SetValueInReportOfMonthYearInfo(TableObject TableOfDa, List<DataRow> drs, string type)
+        {
+            if (drs != null && drs.Count > 0)
+            {
+                int index = TableOfDa.Rows.Count - 1;
+                MonthYearPrintf monthYearPrintf = CalMonthYear(drs);
+                if (monthYearPrintf != null && !string.IsNullOrEmpty(monthYearPrintf.date))
+                {
+                    if (type == "Month")
+                    {
+                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(5, 2);       //月份
+                    }
+                    else
+                    {
+                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(5, 2);       //年份
+                    }
+                    TableOfDa.Rows[index][1].Text = monthYearPrintf.dateSum;                        //出勤天数
+                    TableOfDa.Rows[index][2].Text = monthYearPrintf.durationLow;                    //最短时长
+                    TableOfDa.Rows[index][3].Text = monthYearPrintf.durationHeight;                 //最长时长
+                    TableOfDa.Rows[index][4].Text = monthYearPrintf.duration;                       //时长
+                    TableOfDa.Rows[index][5].Text = monthYearPrintf.deductDuration;                 //扣除时长
+                    TableOfDa.Rows[index][6].Text = monthYearPrintf.avgDuration;                    //平均时长
+                    TableOfDa.Rows[index][7].Text = monthYearPrintf.accumulativeTotalDuration;      //累计时长
+                }
+            }
+        }
+        /// <summary>
+        /// 计算年份、月份时间信息
+        /// </summary>
+        /// <returns></returns>
+        private MonthYearPrintf CalMonthYear(List<DataRow> drs)
+        {
+            try
+            {
+                MonthYearPrintf monthYearPrintf = new MonthYearPrintf();
+
+                int sumDays = 0;                   //出勤天数
+                double durationLow = 100000;       //最短出勤时间
+                string day_durationLow = "";       //最短出勤时间-日期
+                double durationHeight = 0;         //最长出勤时间
+                string day_durationHeight = "";    //最长出勤时间-日期
+                double duration = 0;               //总时长
+                double deductDuration = 0;         //总扣除时长
+
+                if (drs != null && drs.Count > 0)
+                {
+                    monthYearPrintf.date = drs[0]["workdate"].ToString();
+                    string workdate = "0000-00-01";
+                    for (int i = 0; i < drs.Count; i++)
+                    {
+                        #region 
+                        if (drs[i]["workdate"].ToString() == workdate)
+                        {
+                        }
+                        else
+                        {
+                            sumDays++;
+                            workdate = drs[i]["workdate"].ToString();
+                        }
+                        #endregion
+
+                        string timeStart = drs[i]["starttime"].ToString();
+                        string timeEnd = drs[i]["endtime"].ToString();
+                        if (!string.IsNullOrEmpty(timeStart) && !string.IsNullOrEmpty(timeEnd))
+                        {
+                            DateTime dtStart = DateTime.Now;   //开始时间
+                            DateTime dtEnd = DateTime.Now;     //结束时间
+                            if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
+                            {
+                                double times = GetTimeDuration(dtStart, dtEnd);
+                                if (durationLow > times)
+                                {
+                                    durationLow = times;
+                                    day_durationLow = drs[i]["workdate"].ToString();
+                                }
+                                if (durationHeight < times)
+                                {
+                                    durationHeight = times;
+                                    day_durationHeight = drs[i]["workdate"].ToString();
+                                }
+
+                                duration += times;
+
+                                string deductTime = drs[i]["deduct"].ToString();
+                                if (!string.IsNullOrEmpty(deductTime))
+                                {
+                                    deductDuration += double.Parse(deductTime);
+                                }
+                            }
+                        }
+                    }
+                    monthYearPrintf.dateSum = sumDays.ToString();
+                    monthYearPrintf.durationLow = day_durationLow + ":" + durationLow.ToString("0.00") + "小时";
+                    monthYearPrintf.durationHeight = day_durationHeight + ":" + durationHeight.ToString("0.00") + "小时";
+                    monthYearPrintf.duration = duration.ToString("0.00");
+                    monthYearPrintf.deductDuration = deductDuration.ToString("0.00");
+                    monthYearPrintf.accumulativeTotalDuration = (duration - deductDuration).ToString("0.00");
+                    monthYearPrintf.avgDuration = ((duration - deductDuration) / sumDays).ToString("0.00");
+                }
+
+                return monthYearPrintf;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
         /// <summary> 
@@ -252,7 +425,7 @@ namespace WorkingHoursCalculation.Bll
                 {
                     TableRow row = new TableRow();
                     table.Rows.Add(row);
-                    row.Height =28f ;
+                    row.Height = 28f;
                     for (int j = 0; j < table.ColumnCount; j++)
                     {
                         SetCellStyles(row[j]);
@@ -269,9 +442,8 @@ namespace WorkingHoursCalculation.Bll
         /// <summary>
         /// 导出PDF
         /// </summary>
-        /// <param name="filesPath">文件夹名字</param>
         /// <param name="filesName">文件名</param>
-        public bool ReportExport()
+        public bool ReportExport(string fileName)
         {
             try
             {
@@ -282,6 +454,8 @@ namespace WorkingHoursCalculation.Bll
                 sfd.FilterIndex = 1;
                 //保存对话框是否记忆上次打开的目录 
                 sfd.RestoreDirectory = true;
+                //文件的名字
+                sfd.FileName = fileName;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     string localFilePath = sfd.FileName.ToString(); //获得文件路径  
