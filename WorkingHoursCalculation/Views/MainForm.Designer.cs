@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -240,7 +241,7 @@
             this.datagridview.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 11F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -258,7 +259,10 @@
             this.datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datagridview.Location = new System.Drawing.Point(0, 0);
             this.datagridview.Name = "datagridview";
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.datagridview.RowTemplate.Height = 23;
+            this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datagridview.Size = new System.Drawing.Size(1178, 469);
             this.datagridview.TabIndex = 0;
             this.datagridview.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.datagridview_CellFormatting);
@@ -330,18 +334,20 @@
             // labShiChang
             // 
             this.labShiChang.AutoSize = true;
-            this.labShiChang.Location = new System.Drawing.Point(66, 9);
+            this.labShiChang.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.labShiChang.Location = new System.Drawing.Point(77, 7);
             this.labShiChang.Name = "labShiChang";
-            this.labShiChang.Size = new System.Drawing.Size(32, 17);
+            this.labShiChang.Size = new System.Drawing.Size(40, 21);
             this.labShiChang.TabIndex = 3;
             this.labShiChang.Text = "      ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 9);
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.label5.Location = new System.Drawing.Point(16, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.Size = new System.Drawing.Size(74, 21);
             this.label5.TabIndex = 1;
             this.label5.Text = "总时长：";
             // 
@@ -386,10 +392,10 @@
         private System.Windows.Forms.ComboBox cboxUsers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-         private System.Windows.Forms.DateTimePicker endData;
-        private System.Windows.Forms.DateTimePicker startData;
+        public System.Windows.Forms.DateTimePicker endData;
+        public System.Windows.Forms.DateTimePicker startData;
         private System.Windows.Forms.Label label4;
-       
+
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btn_Chaxun;
         private System.Windows.Forms.Button btn_Delete;

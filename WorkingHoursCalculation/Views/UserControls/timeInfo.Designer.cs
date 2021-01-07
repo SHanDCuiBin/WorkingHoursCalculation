@@ -125,8 +125,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker startTime;
-        private System.Windows.Forms.DateTimePicker endtime;
+        public System.Windows.Forms.DateTimePicker startTime;
+        public System.Windows.Forms.DateTimePicker endtime;
         private System.Windows.Forms.TextBox txtDeduct;
         private System.Windows.Forms.ComboBox deductUnit;
         private System.Windows.Forms.TextBox txtdeductReason;

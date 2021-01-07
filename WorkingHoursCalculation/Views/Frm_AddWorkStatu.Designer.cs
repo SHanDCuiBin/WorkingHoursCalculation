@@ -43,6 +43,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.checkLianxu = new System.Windows.Forms.CheckBox();
+            this.btnAddSet = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -149,9 +150,9 @@
             // 
             // btn_AddTimeInfo
             // 
-            this.btn_AddTimeInfo.Location = new System.Drawing.Point(667, 110);
+            this.btn_AddTimeInfo.Location = new System.Drawing.Point(667, 72);
             this.btn_AddTimeInfo.Name = "btn_AddTimeInfo";
-            this.btn_AddTimeInfo.Size = new System.Drawing.Size(40, 52);
+            this.btn_AddTimeInfo.Size = new System.Drawing.Size(40, 90);
             this.btn_AddTimeInfo.TabIndex = 12;
             this.btn_AddTimeInfo.Text = "添 加";
             this.btn_AddTimeInfo.UseVisualStyleBackColor = true;
@@ -161,7 +162,7 @@
             // 
             this.btn_DeletetimeInfo.Location = new System.Drawing.Point(667, 177);
             this.btn_DeletetimeInfo.Name = "btn_DeletetimeInfo";
-            this.btn_DeletetimeInfo.Size = new System.Drawing.Size(40, 52);
+            this.btn_DeletetimeInfo.Size = new System.Drawing.Size(40, 97);
             this.btn_DeletetimeInfo.TabIndex = 13;
             this.btn_DeletetimeInfo.Text = "删 除";
             this.btn_DeletetimeInfo.UseVisualStyleBackColor = true;
@@ -189,12 +190,22 @@
             // checkLianxu
             // 
             this.checkLianxu.AutoSize = true;
-            this.checkLianxu.Location = new System.Drawing.Point(577, 7);
+            this.checkLianxu.Location = new System.Drawing.Point(485, 286);
             this.checkLianxu.Name = "checkLianxu";
             this.checkLianxu.Size = new System.Drawing.Size(88, 24);
             this.checkLianxu.TabIndex = 16;
             this.checkLianxu.Text = "连续添加";
             this.checkLianxu.UseVisualStyleBackColor = true;
+            // 
+            // btnAddSet
+            // 
+            this.btnAddSet.Location = new System.Drawing.Point(634, 10);
+            this.btnAddSet.Name = "btnAddSet";
+            this.btnAddSet.Size = new System.Drawing.Size(65, 27);
+            this.btnAddSet.TabIndex = 17;
+            this.btnAddSet.Text = "设 置";
+            this.btnAddSet.UseVisualStyleBackColor = true;
+            this.btnAddSet.Click += new System.EventHandler(this.btnAddSet_Click);
             // 
             // Frm_AddWorkStatu
             // 
@@ -202,6 +213,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(710, 322);
+            this.Controls.Add(this.btnAddSet);
             this.Controls.Add(this.checkLianxu);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -247,5 +259,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox checkLianxu;
+        private System.Windows.Forms.Button btnAddSet;
     }
 }

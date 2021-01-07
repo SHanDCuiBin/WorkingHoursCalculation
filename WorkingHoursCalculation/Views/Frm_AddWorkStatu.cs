@@ -65,14 +65,59 @@ namespace WorkingHoursCalculation.Views
             }
             #endregion
 
-            flowLayoutPanel1.Controls.Add(new timeInfo("1"));
-            flowLayoutPanel1.Controls.Add(new timeInfo("2"));
 
-            //int index = 1;
-            //foreach (timeInfo item in flowLayoutPanel1.Controls)
-            //{
-            //    item.labIndex.Text = (index++).ToString() + "、";
-            //}
+            string ContinuousAddition = ConfigOperator.GetValueFromConfig("ContinuousAddition");
+            if (!string.IsNullOrEmpty(ContinuousAddition) && ContinuousAddition == "true")
+            {
+                checkLianxu.Checked = true;
+            }
+            else
+            {
+                checkLianxu.Checked = false;
+            }
+
+
+
+            timeInfo timeInfo1 = new timeInfo("1");
+            timeInfo timeInfo2 = new timeInfo("2");
+            
+            
+
+           
+           
+
+            string defaultTimeSet = ConfigOperator.GetValueFromConfig("defaultTimeSet");
+            if (!string.IsNullOrEmpty(defaultTimeSet) && defaultTimeSet == "true")
+            {
+                DateTime dateTime = DateTime.Now;
+
+                string staTime1 = ConfigOperator.GetValueFromConfig("startTime1");
+                if (!string.IsNullOrEmpty(staTime1) && DateTime.TryParse(staTime1, out dateTime))
+                {
+                    timeInfo1.startTime.Value = DateTime.Parse(staTime1);
+                }
+
+                string eTime = ConfigOperator.GetValueFromConfig("endTime1");
+                if (!string.IsNullOrEmpty(eTime) && DateTime.TryParse(eTime, out dateTime))
+                {
+                   timeInfo1.endtime.Value = DateTime.Parse(eTime);
+                }
+
+                string staTime2 = ConfigOperator.GetValueFromConfig("startTime2");
+                if (!string.IsNullOrEmpty(staTime2) && DateTime.TryParse(staTime2, out dateTime))
+                {
+                     timeInfo2.startTime.Value = DateTime.Parse(staTime2);
+                }
+                string eTime2 = ConfigOperator.GetValueFromConfig("endTime2");
+                if (!string.IsNullOrEmpty(eTime2) && DateTime.TryParse(eTime2, out dateTime))
+                {
+                     timeInfo2.endtime.Value = DateTime.Parse(eTime2);
+                }
+            }
+           
+            flowLayoutPanel1.Controls.Add(timeInfo1);
+            flowLayoutPanel1.Controls.Add(timeInfo2);
+
         }
 
 
@@ -235,6 +280,22 @@ namespace WorkingHoursCalculation.Views
             if (flowLayoutPanel1.Controls.Count > 0)
             {
                 flowLayoutPanel1.Controls.RemoveAt(flowLayoutPanel1.Controls.Count - 1);
+            }
+        }
+
+        /// <summary>
+        /// 添加设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddSet_Click(object sender, EventArgs e)
+        {
+            Frm_AddWorkStatuSet frm_AddWorkStatuSet = new Frm_AddWorkStatuSet();
+            if (frm_AddWorkStatuSet.ShowDialog() == DialogResult.OK)
+            {
+                flowLayoutPanel1.Controls.Clear();
+                //设置成功之后，重新初始化设置
+                Initialize();
             }
         }
     }

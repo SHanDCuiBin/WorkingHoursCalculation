@@ -199,7 +199,7 @@ namespace WorkingHoursCalculation.Views
                     sql += " and workdate<=@workdate2 ";
                     dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
 
-                    DataTable dt = DbHelperOleDb.Query(sql + "order by workdate", dic).Tables[0];
+                    DataTable dt = DbHelperOleDb.Query(sql + "order by workdate,starttime", dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         ReportBll reportBll = new ReportBll();

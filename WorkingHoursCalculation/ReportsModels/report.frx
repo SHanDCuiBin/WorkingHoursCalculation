@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/07/2021 13:37:29" ReportInfo.CreatorVersion="2014.4.8.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="01/07/2021 19:20:28" ReportInfo.CreatorVersion="2014.4.8.0">
   <Dictionary/>
-  <ReportPage Name="Page1">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="160.65">
-      <TextObject Name="Text1" Left="66.15" Top="18.9" Width="236.25" Height="18.9" Text="姓名：[workername]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
-      <TextObject Name="Text2" Left="66.15" Top="47.25" Width="236.25" Height="18.9" Text="性别：[gender]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
-      <TextObject Name="Text3" Left="37.8" Top="75.6" Width="236.25" Height="18.9" Text="联系电话：[lxdh]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
-      <TextObject Name="Text4" Left="37.8" Top="103.95" Width="652.05" Height="18.9" Text="主要工作：[mainwork]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
-      <TextObject Name="Text5" Left="37.8" Top="132.3" Width="434.7" Height="18.9" Text="统计时间：[dateLimit]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+  <ReportPage Name="Page2">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="141.75">
+      <TextObject Name="Text1" Left="66.15" Width="236.25" Height="18.9" Text="姓名：[workername]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text2" Left="66.15" Top="28.35" Width="236.25" Height="18.9" Text="性别：[gender]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text3" Left="37.8" Top="56.7" Width="236.25" Height="18.9" Text="联系电话：[lxdh]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text4" Left="37.8" Top="85.05" Width="652.05" Height="18.9" Text="主要工作：[mainwork]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
+      <TextObject Name="Text5" Left="37.8" Top="113.4" Width="434.7" Height="18.9" Text="统计时间：[dateLimit]" VertAlign="Center" Font="微软雅黑, 10.5pt"/>
     </ReportTitleBand>
-    <PageHeaderBand Name="PageHeader1" Top="164.65" Width="718.2"/>
-    <DataBand Name="Data1" Top="168.65" Width="718.2" Height="557.55" Border.Lines="All" Fill.Color="White">
-      <TableObject Name="TableOfDay" Left="37.8" Top="30.24" Width="646.92" Height="34.02" Border.Lines="All">
-        <TableColumn Name="Column48" Width="93.96"/>
-        <TableColumn Name="Column49" Width="84.51"/>
-        <TableColumn Name="Column50" Width="84.51"/>
-        <TableColumn Name="Column51" Width="56.16"/>
-        <TableColumn Name="Column52" Width="84.51"/>
-        <TableColumn Name="Column53" Width="171.45"/>
-        <TableColumn Name="Column54" Width="71.82"/>
+    <PageHeaderBand Name="PageHeader2" Top="145.75" Width="718.2"/>
+    <DataBand Name="Data2" Top="149.75" Width="718.2" Height="538.65" CanGrow="true">
+      <TableObject Name="TableOfDay" Left="28.35" Top="29.86" Width="661.48" Height="34.02" Border.Lines="All">
+        <TableColumn Name="Column48" Width="96.04"/>
+        <TableColumn Name="Column49" Width="86.59"/>
+        <TableColumn Name="Column50" Width="86.59"/>
+        <TableColumn Name="Column51" Width="58.24"/>
+        <TableColumn Name="Column52" Width="86.59"/>
+        <TableColumn Name="Column53" Width="173.53"/>
+        <TableColumn Name="Column54" Width="73.9"/>
         <TableRow Name="Row15" Height="34.02">
           <TableCell Name="Cell74" Border.Lines="All" Fill.Color="White" Text="日期" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
           <TableCell Name="Cell75" Border.Lines="All" Fill.Color="White" Text="开始时间" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
@@ -29,23 +29,23 @@
           <TableCell Name="Cell80" Border.Lines="All" Fill.Color="White" Text="累计时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
         </TableRow>
       </TableObject>
-      <TableObject Name="Table10" Left="37.8" Top="0.38" Width="646.76" Height="28.35" Fill.Color="LightGray">
-        <TableColumn Name="Column46" Width="493.05"/>
-        <TableColumn Name="Column47" Width="153.71"/>
+      <TableObject Name="Table10" Left="28.35" Width="661.08" Height="28.35" Fill.Color="LightGray">
+        <TableColumn Name="Column46" Width="500"/>
+        <TableColumn Name="Column47" Width="161.08"/>
         <TableRow Name="Row14" Height="28.35">
           <TableCell Name="Cell72" Fill.Color="LightGray" Text="每日工作情况统计" Font="微软雅黑, 14pt"/>
           <TableCell Name="Cell73" Fill.Color="LightGray" Font="宋体, 9pt"/>
         </TableRow>
       </TableObject>
-      <TableObject Name="TableOfMonth" Left="37.8" Top="115.29" Width="644.27" Height="34.02" Border.Lines="All">
-        <TableColumn Name="Column55" Width="56.16"/>
-        <TableColumn Name="Column56" Width="65.61"/>
-        <TableColumn Name="Column57" Width="131.76"/>
-        <TableColumn Name="Column58" Width="131.76"/>
-        <TableColumn Name="Column59" Width="56.16"/>
-        <TableColumn Name="Column60" Width="67.5"/>
-        <TableColumn Name="Column61" Width="67.66"/>
-        <TableColumn Name="Column73" Width="67.66"/>
+      <TableObject Name="TableOfMonth" Left="28.35" Top="105.46" Width="661.47" Height="34.02" Border.Lines="All">
+        <TableColumn Name="Column55" Width="67.76"/>
+        <TableColumn Name="Column56" Width="67.76"/>
+        <TableColumn Name="Column57" Width="133.91"/>
+        <TableColumn Name="Column58" Width="133.91"/>
+        <TableColumn Name="Column59" Width="48.86"/>
+        <TableColumn Name="Column60" Width="69.65"/>
+        <TableColumn Name="Column61" Width="69.81"/>
+        <TableColumn Name="Column73" Width="69.81"/>
         <TableRow Name="Row16" Height="34.02">
           <TableCell Name="Cell81" Border.Lines="All" Fill.Color="White" Text="月份" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
           <TableCell Name="Cell82" Border.Lines="All" Fill.Color="White" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
@@ -57,23 +57,23 @@
           <TableCell Name="Cell99" Border.Lines="All" Fill.Color="White" Text="累计时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
         </TableRow>
       </TableObject>
-      <TableObject Name="Table12" Left="37.8" Top="85.05" Width="646.76" Height="28.35" Fill.Color="LightGray">
-        <TableColumn Name="Column62" Width="493.05"/>
-        <TableColumn Name="Column63" Width="153.71"/>
+      <TableObject Name="Table12" Left="28.35" Top="75.6" Width="661.08" Height="28.35" Fill.Color="LightGray">
+        <TableColumn Name="Column62" Width="500"/>
+        <TableColumn Name="Column63" Width="161.08"/>
         <TableRow Name="Row17" Height="28.35">
           <TableCell Name="Cell88" Fill.Color="LightGray" Text="每月工作情况统计" Font="微软雅黑, 14pt"/>
           <TableCell Name="Cell89" Fill.Color="LightGray" Font="宋体, 9pt"/>
         </TableRow>
       </TableObject>
-      <TableObject Name="TableOfYear" Left="37.8" Top="200.34" Width="646.92" Height="34.02" Border.Lines="All">
-        <TableColumn Name="Column64" Width="56.16"/>
-        <TableColumn Name="Column65" Width="65.61"/>
-        <TableColumn Name="Column66" Width="131.76"/>
-        <TableColumn Name="Column67" Width="131.76"/>
-        <TableColumn Name="Column68" Width="56.16"/>
-        <TableColumn Name="Column69" Width="67.5"/>
-        <TableColumn Name="Column74"/>
-        <TableColumn Name="Column70" Width="71.82"/>
+      <TableObject Name="TableOfYear" Left="28.35" Top="181.06" Width="661.48" Height="34.02" Border.Lines="All">
+        <TableColumn Name="Column64" Width="57.98"/>
+        <TableColumn Name="Column65" Width="67.43"/>
+        <TableColumn Name="Column66" Width="133.58"/>
+        <TableColumn Name="Column67" Width="133.58"/>
+        <TableColumn Name="Column68" Width="57.98"/>
+        <TableColumn Name="Column69" Width="69.32"/>
+        <TableColumn Name="Column74" Width="77.42"/>
+        <TableColumn Name="Column70" Width="64.19"/>
         <TableRow Name="Row18" Height="34.02">
           <TableCell Name="Cell90" Border.Lines="All" Fill.Color="White" Text="年份" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
           <TableCell Name="Cell91" Border.Lines="All" Fill.Color="White" Text="出勤天数" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
@@ -85,16 +85,17 @@
           <TableCell Name="Cell96" Border.Lines="All" Fill.Color="White" Text="累计时长" HorzAlign="Center" VertAlign="Center" Font="微软雅黑, 10pt, style=Bold"/>
         </TableRow>
       </TableObject>
-      <TableObject Name="Table14" Left="37.8" Top="170.1" Width="646.76" Height="28.35" Fill.Color="LightGray">
-        <TableColumn Name="Column71" Width="493.05"/>
-        <TableColumn Name="Column72" Width="153.71"/>
+      <TableObject Name="Table14" Left="28.35" Top="150.82" Width="661.08" Height="28.35" Fill.Color="LightGray">
+        <TableColumn Name="Column71" Width="500"/>
+        <TableColumn Name="Column72" Width="161.08"/>
         <TableRow Name="Row19" Height="28.35">
           <TableCell Name="Cell97" Fill.Color="LightGray" Text="每年工作详情统计" Font="微软雅黑, 14pt"/>
           <TableCell Name="Cell98" Fill.Color="LightGray" Font="宋体, 9pt"/>
         </TableRow>
       </TableObject>
-      <TextObject Name="Text6" Left="28.35" Top="245.7" Width="198.45" Height="18.9" Text="总计：[timesSums]小时" Font="微软雅黑, 12pt"/>
-      <RichObject Name="Rich1" Left="28.35" Top="283.5" Width="661.5" Height="264.6" Text="{\rtf1\ansi\ansicpg936\deff0\nouicompat\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}}&#13;&#10;{\*\generator Riched20 10.0.19041}\viewkind4\uc1 &#13;&#10;\pard\b\f0\fs24\lang2052\'cb\'b5\'c3\'f7\'a3\'ba\b0\fs20\par&#13;&#10;1\'a1\'a2\b\'c8\'d5\'c6\'da\'a1\'a2\'d4\'c2\'b7\'dd\'a1\'a2\'c4\'ea\'b7\'dd\b0\'a3\'ba\'b0\'b4\'d5\'d5\'c3\'bf\'cc\'ec\'a1\'a2\'c3\'bf\'d4\'c2\'a1\'a2\'c3\'bf\'c4\'ea\'bd\'f8\'d0\'d0\'b9\'a4\'d7\'f7\'c7\'e9\'bf\'f6\'cd\'b3\'bc\'c6\'a3\'bb\par&#13;&#10;2\'a1\'a2\b\'bf\'aa\'ca\'bc\'ca\'b1\'bc\'e4\'a1\'a2\'bd\'e1\'ca\'f8\'ca\'b1\'bc\'e4\b0\'a3\'ba\'b5\'b1\'cc\'ec\'c4\'b3\'b6\'ce\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'d6\'d0\'a3\'ac\'bf\'aa\'ca\'bc\'b9\'a4\'d7\'f7\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'ac\'bd\'e1\'ca\'f8\'b9\'a4\'d7\'f7\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'bb\par&#13;&#10;3\'a1\'a2\b\'ca\'b1\'b3\'a4\b0\'a3\'ba\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'bf\'aa\'ca\'bc\'ca\'b1\'bc\'e4\rdblquote -\ldblquote\'bd\'e1\'ca\'f8\'ca\'b1\'bc\'e4\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a3\'bb\par&#13;&#10;4\'a1\'a2\b\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\b0\'a3\'ba\'b5\'b1\'cc\'ec\'c4\'b3\'b8\'f6\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'b6\'ce\'b5\'c4\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\'a3\'ac\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'c0\'db\'bc\'c6\'bf\'db\'b3\'fd\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'bb\par&#13;&#10;5\'a1\'a2\b\'bf\'db\'b3\'fd\'d4\'ad\'d2\'f2\b0\'a3\'ba\'d1\'a1\'cc\'ee\'c4\'da\'c8\'dd\'a3\'ac\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\'b5\'c4\'d4\'ad\'d2\'f2\'c3\'e8\'ca\'f6\'a3\'bb\par&#13;&#10;6\'a1\'a2\b\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\b0\'a3\'ba\'cd\'b3\'bc\'c6\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'b5\'c4\'d7\'dc\'b9\'b2\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\'a3\'bb\par&#13;&#10;7\'a1\'a2\b\'d7\'ee\'b6\'cc\'ca\'b1\'b3\'a4\'c8\'d5\'c6\'da\'a1\'a2\'d7\'ee\'b3\'a4\'ca\'b1\'b3\'a4\'c8\'d5\'c6\'da\b0\'a3\'ba\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'d6\'d0\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'d7\'ee\'b6\'cc\'b5\'c4\'c8\'d5\'c6\'da\'a3\'ac\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'d7\'ee\'b3\'a4\'b5\'c4\'c8\'d5\'c6\'da\'a3\'bb\par&#13;&#10;8\'a1\'a2\b\'c6\'bd\'be\'f9\'ca\'b1\'b3\'a4\b0\'a3\'ba\'c6\'bd\'be\'f9\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\rdblquote\lang1033\'a1\'c2\ldblquote\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a3\'bb\par&#13;&#10;9\'a1\'a2\b\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\b0\'a3\'ba\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'ca\'b1\'b3\'a4\rdblquote -\ldblquote\'bf\'db\'b3\'fd\'ca\'b1\'b3\'a4\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a1\'a3\'cd\'b3\'bc\'c6\'b5\'b1\'cc\'ec\'c3\'bf\'b8\'f6\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'b6\'ce\'b5\'c4\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\'a3\'ac\'cd\'b3\'bc\'c6\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'b5\'c4\'c0\'db\'bc\'c6\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'a3\'bb\lang2052\par&#13;&#10;}&#13;&#10;"/>
+      <TextObject Name="Text6" Left="37.8" Top="236.25" Width="198.45" Height="18.9" Text="总计：[timesSums]小时" Font="微软雅黑, 12pt, style=Bold"/>
+      <RichObject Name="Rich1" Left="37.8" Top="274.05" Width="661.5" Height="264.6" Text="{\rtf1\ansi\ansicpg936\deff0\nouicompat\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}}&#13;&#10;{\*\generator Riched20 10.0.19041}\viewkind4\uc1 &#13;&#10;\pard\b\f0\fs24\lang2052\'cb\'b5\'c3\'f7\'a3\'ba\b0\fs20\par&#13;&#10;1\'a1\'a2\b\'c8\'d5\'c6\'da\'a1\'a2\'d4\'c2\'b7\'dd\'a1\'a2\'c4\'ea\'b7\'dd\b0\'a3\'ba\'b0\'b4\'d5\'d5\'c3\'bf\'cc\'ec\'a1\'a2\'c3\'bf\'d4\'c2\'a1\'a2\'c3\'bf\'c4\'ea\'bd\'f8\'d0\'d0\'b9\'a4\'d7\'f7\'c7\'e9\'bf\'f6\'cd\'b3\'bc\'c6\'a3\'bb\par&#13;&#10;2\'a1\'a2\b\'bf\'aa\'ca\'bc\'ca\'b1\'bc\'e4\'a1\'a2\'bd\'e1\'ca\'f8\'ca\'b1\'bc\'e4\b0\'a3\'ba\'b5\'b1\'cc\'ec\'c4\'b3\'b6\'ce\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'d6\'d0\'a3\'ac\'bf\'aa\'ca\'bc\'b9\'a4\'d7\'f7\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'ac\'bd\'e1\'ca\'f8\'b9\'a4\'d7\'f7\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'bb\par&#13;&#10;3\'a1\'a2\b\'ca\'b1\'b3\'a4\b0\'a3\'ba\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'bf\'aa\'ca\'bc\'ca\'b1\'bc\'e4\rdblquote -\ldblquote\'bd\'e1\'ca\'f8\'ca\'b1\'bc\'e4\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a3\'bb\par&#13;&#10;4\'a1\'a2\b\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\b0\'a3\'ba\'b5\'b1\'cc\'ec\'c4\'b3\'b8\'f6\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'b6\'ce\'b5\'c4\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\'a3\'ac\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'c0\'db\'bc\'c6\'bf\'db\'b3\'fd\'b5\'c4\'ca\'b1\'bc\'e4\'a3\'bb\par&#13;&#10;5\'a1\'a2\b\'bf\'db\'b3\'fd\'d4\'ad\'d2\'f2\b0\'a3\'ba\'d1\'a1\'cc\'ee\'c4\'da\'c8\'dd\'a3\'ac\'bf\'db\'b3\'fd\'ca\'b1\'bc\'e4\'b5\'c4\'d4\'ad\'d2\'f2\'c3\'e8\'ca\'f6\'a3\'bb\par&#13;&#10;6\'a1\'a2\b\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\b0\'a3\'ba\'cd\'b3\'bc\'c6\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'b5\'c4\'d7\'dc\'b9\'b2\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\'a3\'bb\par&#13;&#10;7\'a1\'a2\b\'d7\'ee\'b6\'cc\'ca\'b1\'b3\'a4\'c8\'d5\'c6\'da\'a1\'a2\'d7\'ee\'b3\'a4\'ca\'b1\'b3\'a4\'c8\'d5\'c6\'da\b0\'a3\'ba\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'d6\'d0\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'d7\'ee\'b6\'cc\'b5\'c4\'c8\'d5\'c6\'da\'a3\'ac\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'d7\'ee\'b3\'a4\'b5\'c4\'c8\'d5\'c6\'da\'a3\'bb\par&#13;&#10;8\'a1\'a2\b\'c6\'bd\'be\'f9\'ca\'b1\'b3\'a4\b0\'a3\'ba\'c6\'bd\'be\'f9\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\rdblquote\lang1033\'a1\'c2\ldblquote\'b3\'f6\'c7\'da\'cc\'ec\'ca\'fd\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a3\'bb\par&#13;&#10;9\'a1\'a2\b\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\b0\'a3\'ba\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\'a3\'a8\'d0\'a1\'ca\'b1\'a3\'a9=\ldblquote\'ca\'b1\'b3\'a4\rdblquote -\ldblquote\'bf\'db\'b3\'fd\'ca\'b1\'b3\'a4\rdblquote\'a3\'ac\'b1\'a3\'c1\'f4\'c8\'fd\'ce\'bb\'d0\'a1\'ca\'fd\'a1\'a3\'cd\'b3\'bc\'c6\'b5\'b1\'cc\'ec\'c3\'bf\'b8\'f6\'b9\'a4\'d7\'f7\'ca\'b1\'bc\'e4\'b6\'ce\'b5\'c4\'c0\'db\'bc\'c6\'ca\'b1\'b3\'a4\'a3\'ac\'cd\'b3\'bc\'c6\'b5\'b1\'d4\'c2\'a1\'a2\'b5\'b1\'c4\'ea\'b5\'c4\'c0\'db\'bc\'c6\'b9\'a4\'d7\'f7\'ca\'b1\'b3\'a4\'a3\'bb\lang2052\par&#13;&#10;}&#13;&#10;"/>
     </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="692.4" Width="718.2" Height="18.9"/>
   </ReportPage>
 </Report>

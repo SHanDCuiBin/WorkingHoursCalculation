@@ -164,7 +164,7 @@ namespace WorkingHoursCalculation.Bll
                         drs.Add(item);
                     }
                     double SumTimes = GetCumulativeTime(drs);
-                    report.SetParameterValue("timesSums", SumTimes.ToString("0.00"));
+                    report.SetParameterValue("timesSums", SumTimes.ToString("0.000"));
                 }
                 else
                 {
@@ -240,11 +240,11 @@ namespace WorkingHoursCalculation.Bll
                 {
                     if (type == "Month")
                     {
-                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(5, 2);       //月份
+                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(0, 7);       //月份
                     }
                     else
                     {
-                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(5, 2);       //年份
+                        TableOfDa.Rows[index][0].Text = monthYearPrintf.date.Substring(0, 4);       //年份
                     }
                     TableOfDa.Rows[index][1].Text = monthYearPrintf.dateSum;                        //出勤天数
                     TableOfDa.Rows[index][2].Text = monthYearPrintf.durationLow;                    //最短时长
@@ -267,10 +267,6 @@ namespace WorkingHoursCalculation.Bll
                 MonthYearPrintf monthYearPrintf = new MonthYearPrintf();
 
                 int sumDays = 0;                   //出勤天数
-                double durationLow = 100000;       //最短出勤时间
-                string day_durationLow = "";       //最短出勤时间-日期
-                double durationHeight = 0;         //最长出勤时间
-                string day_durationHeight = "";    //最长出勤时间-日期
                 double duration = 0;               //总时长
                 double deductDuration = 0;         //总扣除时长
 
@@ -278,19 +274,10 @@ namespace WorkingHoursCalculation.Bll
                 {
                     monthYearPrintf.date = drs[0]["workdate"].ToString();
                     string workdate = "0000-00-01";
+
+                    Dictionary<string, double> timeDic = new Dictionary<string, double>();
                     for (int i = 0; i < drs.Count; i++)
                     {
-                        #region 
-                        if (drs[i]["workdate"].ToString() == workdate)
-                        {
-                        }
-                        else
-                        {
-                            sumDays++;
-                            workdate = drs[i]["workdate"].ToString();
-                        }
-                        #endregion
-
                         string timeStart = drs[i]["starttime"].ToString();
                         string timeEnd = drs[i]["endtime"].ToString();
                         if (!string.IsNullOrEmpty(timeStart) && !string.IsNullOrEmpty(timeEnd))
@@ -299,35 +286,43 @@ namespace WorkingHoursCalculation.Bll
                             DateTime dtEnd = DateTime.Now;     //结束时间
                             if (DateTime.TryParse(timeStart, out dtStart) && DateTime.TryParse(timeEnd, out dtEnd))
                             {
-                                double times = GetTimeDuration(dtStart, dtEnd);
-                                if (durationLow > times)
-                                {
-                                    durationLow = times;
-                                    day_durationLow = drs[i]["workdate"].ToString();
-                                }
-                                if (durationHeight < times)
-                                {
-                                    durationHeight = times;
-                                    day_durationHeight = drs[i]["workdate"].ToString();
-                                }
+                                double time = GetTimeDuration(dtStart, dtEnd);
 
-                                duration += times;
+                                #region 
+                                if (drs[i]["workdate"].ToString() == workdate)
+                                {
+                                    timeDic[workdate] += time;
+                                }
+                                else
+                                {
+                                    sumDays++;
+                                    workdate = drs[i]["workdate"].ToString();
+                                    timeDic.Add(workdate, time);
+                                }
+                                #endregion
+
+                                duration += time;
 
                                 string deductTime = drs[i]["deduct"].ToString();
                                 if (!string.IsNullOrEmpty(deductTime))
                                 {
+                                    timeDic[workdate] -= double.Parse(deductTime);
                                     deductDuration += double.Parse(deductTime);
                                 }
                             }
                         }
                     }
+
+                    string valueLow = timeDic.OrderBy(d => d.Value).Select(d => d.Key).FirstOrDefault();
+                    string valueHeight = timeDic.OrderBy(d => d.Value).Select(d => d.Key).LastOrDefault();
+
                     monthYearPrintf.dateSum = sumDays.ToString();
-                    monthYearPrintf.durationLow = day_durationLow + ":" + durationLow.ToString("0.00") + "小时";
-                    monthYearPrintf.durationHeight = day_durationHeight + ":" + durationHeight.ToString("0.00") + "小时";
-                    monthYearPrintf.duration = duration.ToString("0.00");
-                    monthYearPrintf.deductDuration = deductDuration.ToString("0.00");
-                    monthYearPrintf.accumulativeTotalDuration = (duration - deductDuration).ToString("0.00");
-                    monthYearPrintf.avgDuration = ((duration - deductDuration) / sumDays).ToString("0.00");
+                    monthYearPrintf.durationLow = valueLow + ": " + timeDic[valueLow].ToString("0.000") + "h";
+                    monthYearPrintf.durationHeight = valueHeight + ": " + timeDic[valueHeight].ToString("0.000") + "h";
+                    monthYearPrintf.duration = duration.ToString("0.000");
+                    monthYearPrintf.deductDuration = deductDuration.ToString("0.000");
+                    monthYearPrintf.accumulativeTotalDuration = (duration - deductDuration).ToString("0.000");
+                    monthYearPrintf.avgDuration = ((duration - deductDuration) / sumDays).ToString("0.000");
                 }
 
                 return monthYearPrintf;

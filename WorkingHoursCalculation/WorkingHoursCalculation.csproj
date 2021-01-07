@@ -98,6 +98,12 @@
     <Compile Include="Views\Frm_AddWorkStatu.Designer.cs">
       <DependentUpon>Frm_AddWorkStatu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Frm_AddWorkStatuSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_AddWorkStatuSet.Designer.cs">
+      <DependentUpon>Frm_AddWorkStatuSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Frm_ExportSetSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Frm_AddWorkStatu.resx">
       <DependentUpon>Frm_AddWorkStatu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_AddWorkStatuSet.resx">
+      <DependentUpon>Frm_AddWorkStatuSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_ExportSetSet.resx">
       <DependentUpon>Frm_ExportSetSet.cs</DependentUpon>
