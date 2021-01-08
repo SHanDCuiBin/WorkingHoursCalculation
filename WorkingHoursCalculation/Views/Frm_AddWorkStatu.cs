@@ -80,11 +80,11 @@ namespace WorkingHoursCalculation.Views
 
             timeInfo timeInfo1 = new timeInfo("1");
             timeInfo timeInfo2 = new timeInfo("2");
-            
-            
 
-           
-           
+
+
+
+
 
             string defaultTimeSet = ConfigOperator.GetValueFromConfig("defaultTimeSet");
             if (!string.IsNullOrEmpty(defaultTimeSet) && defaultTimeSet == "true")
@@ -100,21 +100,21 @@ namespace WorkingHoursCalculation.Views
                 string eTime = ConfigOperator.GetValueFromConfig("endTime1");
                 if (!string.IsNullOrEmpty(eTime) && DateTime.TryParse(eTime, out dateTime))
                 {
-                   timeInfo1.endtime.Value = DateTime.Parse(eTime);
+                    timeInfo1.endtime.Value = DateTime.Parse(eTime);
                 }
 
                 string staTime2 = ConfigOperator.GetValueFromConfig("startTime2");
                 if (!string.IsNullOrEmpty(staTime2) && DateTime.TryParse(staTime2, out dateTime))
                 {
-                     timeInfo2.startTime.Value = DateTime.Parse(staTime2);
+                    timeInfo2.startTime.Value = DateTime.Parse(staTime2);
                 }
                 string eTime2 = ConfigOperator.GetValueFromConfig("endTime2");
                 if (!string.IsNullOrEmpty(eTime2) && DateTime.TryParse(eTime2, out dateTime))
                 {
-                     timeInfo2.endtime.Value = DateTime.Parse(eTime2);
+                    timeInfo2.endtime.Value = DateTime.Parse(eTime2);
                 }
             }
-           
+
             flowLayoutPanel1.Controls.Add(timeInfo1);
             flowLayoutPanel1.Controls.Add(timeInfo2);
 
@@ -171,7 +171,7 @@ namespace WorkingHoursCalculation.Views
                         {
                             #region 判断添加的是否已经存在
 
-                            string selectStr = "Select * from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1';";
+                            string selectStr = "Select * from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
                             DataTable dt = DbHelperOleDb.Query(selectStr, new Dictionary<string, object>()).Tables[0];
                             if (dt != null && dt.Rows.Count > 0)
                             {
@@ -183,7 +183,7 @@ namespace WorkingHoursCalculation.Views
                                 //删除该人员当天的已经添加的数据
                                 try
                                 {
-                                    string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1';";
+                                    string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
                                     DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
                                 }
                                 catch (Exception)
@@ -194,6 +194,8 @@ namespace WorkingHoursCalculation.Views
 
                             foreach (WorkingHours item in worktimes)
                             {
+                                item.createtime = DateTime.Now.ToString();
+                                item.createusername = UserInfo.userName;
                                 if (!DbHelperOleDb.Add(item, "WorkingHours", null))
                                 {
                                     MessageBox.Show("保存失败", "保存", MessageBoxButtons.OK, MessageBoxIcon.Warning);

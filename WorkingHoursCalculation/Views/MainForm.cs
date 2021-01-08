@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using WorkingHoursCalculation.Bll;
 using WorkingHoursCalculation.Helpers;
+using WorkingHoursCalculation.Models;
 
 namespace WorkingHoursCalculation.Views
 {
@@ -106,7 +107,7 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql + " order by workdate", dic).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql + " and createusername='" + UserInfo.userName + "' order by workdate", dic).Tables[0];
             datagridview.DataSource = dt;
 
             if (!backTianShu.IsBusy)
@@ -159,7 +160,7 @@ namespace WorkingHoursCalculation.Views
                 {
                     if (MessageBox.Show("是否确认删除员工：" + DESJiaMi.Decrypt(workername) + "，日期：" + workerDate + " 的工作记录！", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1';";
+                        string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
                         DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
                         MessageBox.Show("删除成功！", "删除", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btn_Chaxun_Click(null, null);
@@ -199,13 +200,13 @@ namespace WorkingHoursCalculation.Views
                     sql += " and workdate<=@workdate2 ";
                     dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
 
-                    DataTable dt = DbHelperOleDb.Query(sql + "order by workdate,starttime", dic).Tables[0];
+                    DataTable dt = DbHelperOleDb.Query(sql + " and createusername='" + UserInfo.userName + "'order by workdate,starttime", dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         ReportBll reportBll = new ReportBll();
-                        string timeLimit = startData.Value.ToString("yyyy.MM.dd") + "—" + endData.Value.ToString("yyyy.MM.dd");
+                        string timeLimit = startData.Value.ToString("yyyy.MM.dd") + "-" + endData.Value.ToString("yyyy.MM.dd");
                         reportBll.RegisterData(dt, cboxUsers.Text, timeLimit);
-                        if (reportBll.ReportExport(cboxUsers.Text + "-" + timeLimit + ".pdf"))
+                        if (reportBll.ReportExport(cboxUsers.Text + "_" + timeLimit + ".pdf"))
                         {
                             MessageBox.Show("工作报表生成完成！", "导出", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -347,38 +348,6 @@ namespace WorkingHoursCalculation.Views
             TimeSpan ts = ts1.Subtract(ts2).Duration();
 
             return ts.TotalHours;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // create report instance
-            Report report = new Report();
-
-            // load the existing report
-            report.Load(@"..\..\report.frx");
-
-
-            DataSet FDataSet = new DataSet();
-
-            DataTable table = new DataTable();
-            table.TableName = "Employees";
-            FDataSet.Tables.Add(table);
-
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("Name", typeof(string));
-
-            table.Rows.Add(1, "Andrew Fuller");
-            table.Rows.Add(2, "Nancy Davolio");
-            table.Rows.Add(3, "Margaret Peacock");
-
-            // register the dataset
-            report.RegisterData(FDataSet);
-
-            // run the report
-            report.Show();
-
-            // free resources used by report
-            report.Dispose();
         }
     }
 }

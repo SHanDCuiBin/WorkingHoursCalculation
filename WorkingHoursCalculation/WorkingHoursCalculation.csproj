@@ -50,7 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>计算.ico</ApplicationIcon>
+    <ApplicationIcon>CalWorkerTimes.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FastReport, Version=2014.4.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -89,9 +89,15 @@
     <Compile Include="Models\Personnel.cs" />
     <Compile Include="Models\termList.cs" />
     <Compile Include="Models\UserInfo.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Models\WorkingHours.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Frm_AddWorkStatu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,12 @@
     </Compile>
     <Compile Include="Views\Frm_ExportSetSet.Designer.cs">
       <DependentUpon>Frm_ExportSetSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Frm_logon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Frm_logon.Designer.cs">
+      <DependentUpon>Frm_logon.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Frm_PersonelInfo.cs">
       <SubType>Form</SubType>
@@ -133,14 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Views\Frm_AddWorkStatu.resx">
       <DependentUpon>Frm_AddWorkStatu.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_ExportSetSet.resx">
       <DependentUpon>Frm_ExportSetSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Frm_logon.resx">
+      <DependentUpon>Frm_logon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frm_PersonelInfo.resx">
       <DependentUpon>Frm_PersonelInfo.cs</DependentUpon>
@@ -175,6 +185,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="CalWorkerTimes.ico" />
     <Content Include="Data\Data.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -210,7 +221,6 @@
     <Content Include="Resources\宠物.png\爱宠30.png" />
     <Content Include="Resources\宠物.png\爱宠31.png" />
     <Content Include="Resources\宠物.png\爱宠32.png" />
-    <Content Include="Resources\计算.ico" />
     <Content Include="Resources\计算.png" />
     <Content Include="计算.ico" />
   </ItemGroup>

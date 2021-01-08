@@ -35,6 +35,17 @@ namespace WorkingHoursCalculation.Models
         /// <summary>
         ///记录状态 1 正常；2 删除
         /// </summary>
-        public string isdelete { get; set; }
+        public string isdelete { get; set; } 
+        
+        /// <summary>
+        ///记录状态 1 正常；2 删除
+        /// </summary>
+        public string createtime { get; set; }
+        
+        /// <summary>
+        ///记录状态 1 正常；2 删除
+        /// </summary>
+        public string createusername { get; set; }
+
     }
 }

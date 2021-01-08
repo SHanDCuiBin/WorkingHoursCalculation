@@ -37,8 +37,7 @@ namespace WorkingHoursCalculation
             string isrember = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("isremeber"));
             if (isrember.Contains("true"))
             {
-
-                string Account = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("Account"));
+                string Account = ConfigOperator.GetValueFromConfig("Account");
                 string password = DESJiaMi.Decrypt(ConfigOperator.GetValueFromConfig("password"));
                 if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(password))
                 {
@@ -67,7 +66,7 @@ namespace WorkingHoursCalculation
                     try
                     {
                         Dictionary<string, object> dic = new Dictionary<string, object>();
-                        dic.Add("@username", DESJiaMi.Encrypt(txtUserName.Text));
+                        dic.Add("@username", txtUserName.Text);
                         dic.Add("@password", DESJiaMi.Encrypt(txtPassword.Text));
 
                         //dic.Add("@username", txtUserName.Text);
@@ -78,7 +77,7 @@ namespace WorkingHoursCalculation
                         if (userdt != null && userdt.Rows.Count > 0)
                         {
                             //登陆账号
-                            UserInfo.userName = DESJiaMi.Decrypt(userdt.Rows[0]["username"].ToString());
+                            UserInfo.userName = userdt.Rows[0]["username"].ToString();
                             //登陆密码
                             UserInfo.password = DESJiaMi.Decrypt(userdt.Rows[0]["password"].ToString());
                             this.Hide();
@@ -117,7 +116,7 @@ namespace WorkingHoursCalculation
                 if (checkIsRemeber.Checked && !string.IsNullOrEmpty(txtUserName.Text) && !string.IsNullOrEmpty(txtPassword.Text))
                 {
                     ConfigOperator.SetValueFromConfig("isremeber", DESJiaMi.Encrypt("true " + DateTime.Now.ToString()));
-                    ConfigOperator.SetValueFromConfig("Account", DESJiaMi.Encrypt(txtUserName.Text));
+                    ConfigOperator.SetValueFromConfig("Account", txtUserName.Text);
                     ConfigOperator.SetValueFromConfig("password", DESJiaMi.Encrypt(txtPassword.Text));
                 }
                 else
@@ -225,6 +224,17 @@ namespace WorkingHoursCalculation
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// 注册账号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Frm_logon frm_Logon = new Frm_logon();
+            frm_Logon.ShowDialog();
         }
     }
 }
