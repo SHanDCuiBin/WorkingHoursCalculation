@@ -76,15 +76,8 @@ namespace WorkingHoursCalculation.Views
                 checkLianxu.Checked = false;
             }
 
-
-
             timeInfo timeInfo1 = new timeInfo("1");
             timeInfo timeInfo2 = new timeInfo("2");
-
-
-
-
-
 
             string defaultTimeSet = ConfigOperator.GetValueFromConfig("defaultTimeSet");
             if (!string.IsNullOrEmpty(defaultTimeSet) && defaultTimeSet == "true")
@@ -171,7 +164,7 @@ namespace WorkingHoursCalculation.Views
                         {
                             #region 判断添加的是否已经存在
 
-                            string selectStr = "Select * from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
+                            string selectStr = "Select * from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1' ;";
                             DataTable dt = DbHelperOleDb.Query(selectStr, new Dictionary<string, object>()).Tables[0];
                             if (dt != null && dt.Rows.Count > 0)
                             {
@@ -183,7 +176,7 @@ namespace WorkingHoursCalculation.Views
                                 //删除该人员当天的已经添加的数据
                                 try
                                 {
-                                    string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
+                                    string deleteSql = " Delete from WorkingHours where workername='" + DESJiaMi.Encrypt(this.gWorkerName) + "' and workdate='" + dateWorkDate.Value.ToString("yyyy-MM-dd") + "' and isdelete='1'  ;";
                                     DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
                                 }
                                 catch (Exception)

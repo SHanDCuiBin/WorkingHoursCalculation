@@ -32,10 +32,10 @@ namespace WorkingHoursCalculation.Views
             this.button1 = new System.Windows.Forms.Button();
             this.checkContinuousAddition = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.startTime1 = new System.Windows.Forms.DateTimePicker();
             this.endTime1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.startTime1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.endTime2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@ namespace WorkingHoursCalculation.Views
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(140, 271);
+            this.button1.Location = new System.Drawing.Point(150, 271);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(70, 31);
@@ -60,7 +60,7 @@ namespace WorkingHoursCalculation.Views
             // checkContinuousAddition
             // 
             this.checkContinuousAddition.AutoSize = true;
-            this.checkContinuousAddition.Location = new System.Drawing.Point(12, 11);
+            this.checkContinuousAddition.Location = new System.Drawing.Point(20, 11);
             this.checkContinuousAddition.Name = "checkContinuousAddition";
             this.checkContinuousAddition.Size = new System.Drawing.Size(84, 24);
             this.checkContinuousAddition.TabIndex = 1;
@@ -73,33 +73,12 @@ namespace WorkingHoursCalculation.Views
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.startTime1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(10, 76);
+            this.groupBox1.Location = new System.Drawing.Point(20, 76);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 89);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "时间段1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label1.Location = new System.Drawing.Point(15, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "开始时间：";
-            // 
-            // startTime1
-            // 
-            this.startTime1.Enabled = false;
-            this.startTime1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.startTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.startTime1.Location = new System.Drawing.Point(88, 25);
-            this.startTime1.Name = "startTime1";
-            this.startTime1.ShowUpDown = true;
-            this.startTime1.Size = new System.Drawing.Size(95, 25);
-            this.startTime1.TabIndex = 1;
             // 
             // endTime1
             // 
@@ -122,13 +101,34 @@ namespace WorkingHoursCalculation.Views
             this.label2.TabIndex = 2;
             this.label2.Text = "结束时间：";
             // 
+            // startTime1
+            // 
+            this.startTime1.Enabled = false;
+            this.startTime1.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.startTime1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.startTime1.Location = new System.Drawing.Point(88, 25);
+            this.startTime1.Name = "startTime1";
+            this.startTime1.ShowUpDown = true;
+            this.startTime1.Size = new System.Drawing.Size(95, 25);
+            this.startTime1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label1.Location = new System.Drawing.Point(15, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "开始时间：";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.endTime2);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.startTime2);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(12, 171);
+            this.groupBox2.Location = new System.Drawing.Point(22, 171);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 89);
             this.groupBox2.TabIndex = 4;
@@ -180,7 +180,7 @@ namespace WorkingHoursCalculation.Views
             // checkSetTime
             // 
             this.checkSetTime.AutoSize = true;
-            this.checkSetTime.Location = new System.Drawing.Point(10, 43);
+            this.checkSetTime.Location = new System.Drawing.Point(20, 43);
             this.checkSetTime.Name = "checkSetTime";
             this.checkSetTime.Size = new System.Drawing.Size(140, 24);
             this.checkSetTime.TabIndex = 5;
@@ -193,7 +193,7 @@ namespace WorkingHoursCalculation.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(222, 312);
+            this.ClientSize = new System.Drawing.Size(236, 312);
             this.Controls.Add(this.checkSetTime);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

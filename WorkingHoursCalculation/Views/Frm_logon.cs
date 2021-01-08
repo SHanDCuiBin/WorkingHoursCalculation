@@ -34,7 +34,7 @@ namespace WorkingHoursCalculation.Views
                     dic.Add("@username", txtUserName.Text);
                     string sql = "Select * from Users where enable='1' and  username=@username ";
                     DataTable userdt = DbHelperOleDb.Query(sql, dic).Tables[0];
-                    if (userdt != null && userdt.Rows.Count > 0)
+                    if (userdt == null || userdt.Rows.Count == 0)
                     {
                         Users user = new Users();
                         user.username = txtUserName.Text;
@@ -43,7 +43,7 @@ namespace WorkingHoursCalculation.Views
                         user.enable = "1";
                         if (DbHelperOleDb.Add(user, "Users", null))
                         {
-                            MessageBox.Show("注册成功！\r\n账号：" + user.username + "\r\n密码：" + DESJiaMi.Decrypt(user.password) + "\r\n请牢记登陆账号密码!", "注册", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("注册成功！\r\n账号：" + user.username + "\r\n密码：" + DESJiaMi.Decrypt(user.password) + "\r\n请牢记登陆账号密码!", "注册", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.DialogResult = DialogResult.OK;
                         }
                         else
@@ -126,7 +126,14 @@ namespace WorkingHoursCalculation.Views
         /// <param name="e"></param>
         private void txtUserName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !"01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".Contains(e.KeyChar);
+            if (("01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".Contains(e.KeyChar)) || (e.KeyChar == 8))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

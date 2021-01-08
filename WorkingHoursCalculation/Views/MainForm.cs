@@ -33,7 +33,7 @@ namespace WorkingHoursCalculation.Views
         {
             try
             {
-                string sql = "Select ID,name from Personnel where enable='1' order by ID;";
+                string sql = "Select ID,name from Personnel where enable='1'  order by ID;";
                 DataTable userdt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
                 if (userdt != null && userdt.Rows.Count > 0)
                 {
@@ -107,7 +107,7 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql + " and createusername='" + UserInfo.userName + "' order by workdate", dic).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate", dic).Tables[0];
             datagridview.DataSource = dt;
 
             if (!backTianShu.IsBusy)
@@ -160,7 +160,7 @@ namespace WorkingHoursCalculation.Views
                 {
                     if (MessageBox.Show("是否确认删除员工：" + DESJiaMi.Decrypt(workername) + "，日期：" + workerDate + " 的工作记录！", "删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
-                        string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1' and createusername = '" + UserInfo.userName + "';";
+                        string deleteSql = " Delete from WorkingHours where workername='" + workername + "' and workdate='" + workerDate + "' and isdelete='1' ;";
                         DbHelperOleDb.ExecuteSql(deleteSql, new Dictionary<string, object>());
                         MessageBox.Show("删除成功！", "删除", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btn_Chaxun_Click(null, null);
@@ -200,7 +200,7 @@ namespace WorkingHoursCalculation.Views
                     sql += " and workdate<=@workdate2 ";
                     dic.Add("workdate2", endData.Value.ToString("yyyy-MM-dd"));
 
-                    DataTable dt = DbHelperOleDb.Query(sql + " and createusername='" + UserInfo.userName + "'order by workdate,starttime", dic).Tables[0];
+                    DataTable dt = DbHelperOleDb.Query(sql + " order by workdate,starttime", dic).Tables[0];
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         ReportBll reportBll = new ReportBll();

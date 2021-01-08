@@ -43,7 +43,7 @@ namespace WorkingHoursCalculation.Views
         /// </summary>
         private void LoadPersonelInfo()
         {
-            string sql = "Select * from Personnel where enable='1' order by ID;";
+            string sql = "Select * from Personnel where enable='1'  and createusername='" + UserInfo.userName + "' order by ID;";
             userdt = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
             if (userdt != null && userdt.Rows.Count > 0)
             {
@@ -120,7 +120,7 @@ namespace WorkingHoursCalculation.Views
                 if (!string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
                     //判断姓名是否重复
-                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "' and id<>" + CurrentSelectNumber + ";";
+                    string sql = "Select * from Personnel where enable='1' and name='" + DESJiaMi.Encrypt(txtName.Text.Trim()) + "' and id<>" + CurrentSelectNumber + " ;";
                     DataTable userUpdate = DbHelperOleDb.Query(sql, new Dictionary<string, object>()).Tables[0];
                     if (userUpdate != null && userUpdate.Rows.Count > 0)
                     {
@@ -142,7 +142,7 @@ namespace WorkingHoursCalculation.Views
                         termes.Add(new termList("id", "id1", CurrentSelectNumber, 0));
                         if (DbHelperOleDb.Update(personnel, "Personnel", termes, null, true))
                         {
-                             updateORAddSuccess = true;
+                            updateORAddSuccess = true;
                             MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //ClearnNeiRong();                        //清空内容
                             IsAddNeiRong(false);
@@ -206,7 +206,7 @@ namespace WorkingHoursCalculation.Views
                         //清空左侧显示内容
                         ClearnNeiRong();
 
-                         updateORAddSuccess = true;
+                        updateORAddSuccess = true;
                     }
                 }
                 else
@@ -267,7 +267,7 @@ namespace WorkingHoursCalculation.Views
 
                         if (DbHelperOleDb.Add(personnel, "Personnel", null))
                         {
-                             updateORAddSuccess = true;
+                            updateORAddSuccess = true;
                             MessageBox.Show("保存成功！", "修改", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ClearnNeiRong();                        //清空内容
                             SetButtonStatus(true, true, true);      //重置按钮状态
