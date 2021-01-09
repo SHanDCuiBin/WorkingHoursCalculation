@@ -107,7 +107,7 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate", dic).Tables[0];
+            DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate,starttime", dic).Tables[0];
             datagridview.DataSource = dt;
 
             if (!backTianShu.IsBusy)

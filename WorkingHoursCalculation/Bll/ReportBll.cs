@@ -49,6 +49,10 @@ namespace WorkingHoursCalculation.Bll
                         workerName = DESJiaMi.Decrypt(workerName);
                         report.SetParameterValue("workername", workerName);
                     }
+                    else
+                    {
+                        report.SetParameterValue("workername", "");
+                    }
 
                     //性别
                     string xingbie = userUpdate.Rows[0]["gender"].ToString();
@@ -56,6 +60,10 @@ namespace WorkingHoursCalculation.Bll
                     {
                         xingbie = DESJiaMi.Decrypt(xingbie);
                         report.SetParameterValue("gender", xingbie);
+                    }
+                    else
+                    {
+                        report.SetParameterValue("gender", "");
                     }
 
                     //联系电话
@@ -65,6 +73,10 @@ namespace WorkingHoursCalculation.Bll
                         lxdh = DESJiaMi.Decrypt(lxdh);
                         report.SetParameterValue("lxdh", lxdh);
                     }
+                    else
+                    {
+                        report.SetParameterValue("lxdh", "");
+                    }
 
                     //主要工作
                     string mainwork = userUpdate.Rows[0]["mainwork"].ToString();
@@ -72,6 +84,11 @@ namespace WorkingHoursCalculation.Bll
                     {
                         report.SetParameterValue("mainwork", mainwork);
                     }
+                    else
+                    {
+                        report.SetParameterValue("mainwork", "");
+                    }
+
                     //统计时间
                     report.SetParameterValue("dateLimit", dateLimit);
 
@@ -164,7 +181,15 @@ namespace WorkingHoursCalculation.Bll
                         drs.Add(item);
                     }
                     double SumTimes = GetCumulativeTime(drs);
-                    report.SetParameterValue("timesSums", SumTimes.ToString("0.000"));
+                    if (!string.IsNullOrEmpty(SumTimes.ToString()))
+                    {
+                        report.SetParameterValue("timesSums", SumTimes.ToString("0.000"));
+                    }
+                    else
+                    {
+                        report.SetParameterValue("timesSums", "");
+                    }
+
                 }
                 else
                 {
