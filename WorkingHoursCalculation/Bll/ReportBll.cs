@@ -101,6 +101,7 @@ namespace WorkingHoursCalculation.Bll
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string workdate = dt.Rows[i]["workdate"].ToString();
+
                         #region 天
                         if (drsDay.Count != 0)
                         {

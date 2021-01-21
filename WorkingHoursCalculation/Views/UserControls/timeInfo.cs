@@ -125,7 +125,7 @@ namespace WorkingHoursCalculation.Views.UserControls
 
                     if (ts3.TotalMinutes < times)
                     {
-                        error = labIndex.Text + "中：“扣除时间”大于“结束事件”-“开始时间”。";
+                        error = labIndex.Text + "中：“扣除时间”大于“结束时间”-“开始时间”。";
                         return false;
                     }
 
