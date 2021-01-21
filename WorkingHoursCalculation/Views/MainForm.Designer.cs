@@ -170,7 +170,7 @@
             // btn_outPut
             // 
             this.btn_outPut.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_outPut.Location = new System.Drawing.Point(280, 5);
+            this.btn_outPut.Location = new System.Drawing.Point(280, 4);
             this.btn_outPut.Name = "btn_outPut";
             this.btn_outPut.Size = new System.Drawing.Size(75, 30);
             this.btn_outPut.TabIndex = 6;
@@ -181,7 +181,7 @@
             // btn_Personnel
             // 
             this.btn_Personnel.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Personnel.Location = new System.Drawing.Point(370, 5);
+            this.btn_Personnel.Location = new System.Drawing.Point(370, 4);
             this.btn_Personnel.Name = "btn_Personnel";
             this.btn_Personnel.Size = new System.Drawing.Size(82, 30);
             this.btn_Personnel.TabIndex = 5;
@@ -203,7 +203,7 @@
             // btn_Delete
             // 
             this.btn_Delete.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.btn_Delete.Location = new System.Drawing.Point(190, 5);
+            this.btn_Delete.Location = new System.Drawing.Point(190, 4);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(75, 30);
             this.btn_Delete.TabIndex = 2;
@@ -335,7 +335,7 @@
             // 
             this.labShiChang.AutoSize = true;
             this.labShiChang.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.labShiChang.Location = new System.Drawing.Point(77, 7);
+            this.labShiChang.Location = new System.Drawing.Point(72, 6);
             this.labShiChang.Name = "labShiChang";
             this.labShiChang.Size = new System.Drawing.Size(40, 21);
             this.labShiChang.TabIndex = 3;
@@ -345,7 +345,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.label5.Location = new System.Drawing.Point(16, 7);
+            this.label5.Location = new System.Drawing.Point(11, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 21);
             this.label5.TabIndex = 1;

@@ -24,8 +24,6 @@ namespace WorkingHoursCalculation
 
             //初始化账号信息
             InitializationAccount();
-
-
         }
 
         #region 系统初始化
@@ -109,6 +107,9 @@ namespace WorkingHoursCalculation
             }
         }
 
+        /// <summary>
+        /// 将密码记录到配置文件中
+        /// </summary>
         private void IsRemeberAccount()
         {
             try
@@ -158,7 +159,6 @@ namespace WorkingHoursCalculation
                 Location = myPosittion;
             }
         }
-
         private void BtnSDSRSave_MouseEnter(object sender, EventArgs e)
         {
             Button bt = sender as Button;
@@ -183,10 +183,13 @@ namespace WorkingHoursCalculation
         }
         #endregion
 
-
+        /// <summary>
+        /// 随机生成 加载图片
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="pictureBox"></param>
         private void SetPicture(int index, PictureBox pictureBox)
         {
-
             switch (index)
             {
                 case 1: pictureBox.Image = global::WorkingHoursCalculation.Properties.Resources.爱宠01; break;

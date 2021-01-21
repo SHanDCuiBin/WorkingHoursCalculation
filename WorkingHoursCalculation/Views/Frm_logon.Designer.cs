@@ -44,7 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 40);
+            this.label1.Location = new System.Drawing.Point(28, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 20);
@@ -53,7 +53,7 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(89, 37);
+            this.txtUserName.Location = new System.Drawing.Point(89, 25);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(159, 26);
             this.txtUserName.TabIndex = 2;
@@ -61,7 +61,7 @@
             // 
             // txtpassword
             // 
-            this.txtpassword.Location = new System.Drawing.Point(90, 90);
+            this.txtpassword.Location = new System.Drawing.Point(90, 78);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(159, 26);
@@ -71,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 93);
+            this.label2.Location = new System.Drawing.Point(31, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 20);
@@ -80,7 +80,7 @@
             // 
             // txtpassword2
             // 
-            this.txtpassword2.Location = new System.Drawing.Point(90, 141);
+            this.txtpassword2.Location = new System.Drawing.Point(90, 129);
             this.txtpassword2.Name = "txtpassword2";
             this.txtpassword2.PasswordChar = '*';
             this.txtpassword2.Size = new System.Drawing.Size(159, 26);
@@ -90,7 +90,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 144);
+            this.label3.Location = new System.Drawing.Point(15, 132);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
@@ -100,7 +100,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.button1.Location = new System.Drawing.Point(84, 191);
+            this.button1.Location = new System.Drawing.Point(84, 179);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 34);
             this.button1.TabIndex = 7;
@@ -111,7 +111,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.button2.Location = new System.Drawing.Point(172, 191);
+            this.button2.Location = new System.Drawing.Point(172, 179);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 34);
             this.button2.TabIndex = 8;

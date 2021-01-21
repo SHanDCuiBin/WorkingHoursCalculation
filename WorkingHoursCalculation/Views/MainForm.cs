@@ -108,11 +108,19 @@ namespace WorkingHoursCalculation.Views
             }
 
             DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate", dic).Tables[0];
-            datagridview.DataSource = dt;
-
-            if (!backTianShu.IsBusy)
+            if (dt != null && dt.Rows.Count > 0)
             {
-                backTianShu.RunWorkerAsync(dt);
+                datagridview.DataSource = dt;
+                if (!backTianShu.IsBusy)
+                {
+                    backTianShu.RunWorkerAsync(dt);
+                }
+            }
+            else
+            {
+                datagridview.DataSource = null;
+                labShiChang.Text = "0.000小时";
+                MessageBox.Show("未查询到结果！", "查询", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -292,6 +300,19 @@ namespace WorkingHoursCalculation.Views
                 catch (Exception)
                 {
 
+                }
+            }
+            else if (columnName == "deduct")
+            {
+                if (!string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.CellStyle.BackColor = Color.Red;
+                }
+            } else if (columnName == "deductreason")
+            {
+                if (!string.IsNullOrEmpty(e.Value.ToString()))
+                {
+                    e.CellStyle.BackColor = Color.Aqua;
                 }
             }
         }
