@@ -107,20 +107,12 @@ namespace WorkingHoursCalculation.Views
                 return;
             }
 
-            DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate", dic).Tables[0];
-            if (dt != null && dt.Rows.Count > 0)
+            DataTable dt = DbHelperOleDb.Query(sql + "  order by workdate,starttime", dic).Tables[0];
+            datagridview.DataSource = dt;
+
+            if (!backTianShu.IsBusy)
             {
-                datagridview.DataSource = dt;
-                if (!backTianShu.IsBusy)
-                {
-                    backTianShu.RunWorkerAsync(dt);
-                }
-            }
-            else
-            {
-                datagridview.DataSource = null;
-                labShiChang.Text = "0.000小时";
-                MessageBox.Show("未查询到结果！", "查询", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                backTianShu.RunWorkerAsync(dt);
             }
         }
 
