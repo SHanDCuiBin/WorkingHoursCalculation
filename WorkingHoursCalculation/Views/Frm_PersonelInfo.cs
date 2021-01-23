@@ -72,7 +72,7 @@ namespace WorkingHoursCalculation.Views
                     if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(name))
                     {
                         CurrentSelectNumber = this.datagridview.CurrentRow.Cells["ID"].Value.ToString();
-                        DataRow[] dr = userdt.Select();
+                        DataRow[] dr = userdt.Select("id='" + CurrentSelectNumber + "'");
                         if (dr != null && dr.Length > 0)
                         {
                             txtName.Text = DESJiaMi.Decrypt(dr[0]["name"].ToString());
